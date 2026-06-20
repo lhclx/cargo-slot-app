@@ -1255,10 +1255,8 @@ def update_order(order_id):
     data = load_orders()
     for i, o in enumerate(data):
         if o['id'] == order_id:
-            # Viewer role: only allowed to edit ETD and ETA of own orders
+            # Viewer role: can edit ETD and ETA of ALL orders (per 2026-06-21 requirement)
             if user.get('role') == 'viewer':
-                if str(o.get('owner', '')) != str(user['id']):
-                    return jsonify({'error': 'Permission denied: can only edit own orders'}), 403
                 # Restrict update to only ETD and ETA fields
                 allowed_fields = {'etd', 'eta'}
                 upd = {k: v for k, v in request.get_json().items() if k in allowed_fields}
