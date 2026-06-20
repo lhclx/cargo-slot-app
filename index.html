@@ -432,10 +432,7 @@ tr:hover td{background:#f8f9fa;}
           <option value="admin">admin (管理员)</option>
         </select>
       </div>
-      <div class="fg fl">
-        <label>权限 (逗号分隔)</label>
-        <input type="text" id="newUserPermissions" placeholder="如: slots:read,slots:write">
-      </div>
+
     </div>
     <div id="addUserMsg" style="margin-top:10px;font-size:13px;"></div>
     <div class="mft">
@@ -472,10 +469,7 @@ tr:hover td{background:#f8f9fa;}
         <option value="admin">admin (管理员)</option>
       </select>
     </div>
-    <div class="fg fl">
-      <label>权限 (逗号分隔)</label>
-      <input type="text" id="editUserPermissions" placeholder="如: slots:read,slots:write">
-    </div>
+
   </div>
   <div id="editUserMsg" style="margin-top:10px;font-size:13px;"></div>
   <div class="mft">
@@ -737,7 +731,6 @@ function openAddUserForm() {
   document.getElementById('newUserPassword').value = '';
   document.getElementById('newUserNickname').value = '';
   document.getElementById('newUserRole').value = 'operator';
-  document.getElementById('newUserPermissions').value = '';
   document.getElementById('addUserMsg').textContent = '';
 }
 
@@ -755,7 +748,7 @@ async function loadUsers() {
       return;
     }
     
-    let html = '<table class="user-table"><thead><tr><th>ID</th><th>用户名</th><th>昵称</th><th>角色</th><th>权限</th><th>创建时间</th><th>操作</th></tr></thead><tbody>';
+    let html = '<table class="user-table"><thead><tr><th>ID</th><th>用户名</th><th>昵称</th><th>角色</th><th>创建时间</th><th>操作</th></tr></thead><tbody>';
     
     data.forEach(user => {
       html += `<tr>
@@ -763,7 +756,6 @@ async function loadUsers() {
         <td>${esc(user.username)}</td>
         <td>${esc(user.nickname || '')}</td>
         <td><span class="bg ${user.role === 'admin' ? 'bg-0' : user.role === 'operator' ? 'bg-1' : 'bg-4'}">${user.role}</span></td>
-        <td>${esc(user.permissions || '-')}</td>
         <td>${user.created_at ? fmtDate(user.created_at) : '-'}</td>
         <td class="act">
           <button class="btn btn-s btn-p" onclick="openEditUser(${user.id})">编辑</button>
@@ -784,7 +776,6 @@ async function doAddUser() {
   const password = document.getElementById('newUserPassword').value;
   const nickname = document.getElementById('newUserNickname').value.trim();
   const role = document.getElementById('newUserRole').value;
-  const permissions = document.getElementById('newUserPermissions').value.trim();
   const msgEl = document.getElementById('addUserMsg');
   
   if (!username || !password) {
@@ -798,7 +789,7 @@ async function doAddUser() {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       credentials: 'include',
-      body: JSON.stringify({ username, password, nickname, role, permissions })
+      body: JSON.stringify({ username, password, nickname, role })
     });
     
     const data = await resp.json();
@@ -833,7 +824,6 @@ async function openEditUser(userId) {
     document.getElementById('editUserUsername').value = user.username;
     document.getElementById('editUserNickname').value = user.nickname || '';
     document.getElementById('editUserRole').value = user.role;
-    document.getElementById('editUserPermissions').value = user.permissions || '';
     document.getElementById('editUserMsg').textContent = '';
     document.getElementById('editUserModal').classList.add('on');
   } catch(e) {
@@ -849,7 +839,6 @@ async function doEditUser() {
   const userId = document.getElementById('editUserId').value;
   const nickname = document.getElementById('editUserNickname').value.trim();
   const role = document.getElementById('editUserRole').value;
-  const permissions = document.getElementById('editUserPermissions').value.trim();
   const msgEl = document.getElementById('editUserMsg');
   
   try {
@@ -857,7 +846,7 @@ async function doEditUser() {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       credentials: 'include',
-      body: JSON.stringify({ nickname, role, permissions })
+      body: JSON.stringify({ nickname, role })
     });
     
     const data = await resp.json();
@@ -1263,7 +1252,7 @@ async function loadMyOrders(page) {
   if (!currentUser) return;
   page = page || 1;
   moPage = page;
-  const scope = (currentUser.role === 'admin') ? 'all' : 'own';
+  const scope = (currentUser.role === 'admin' || currentUser.role === 'viewer') ? 'all' : 'own';
   const params = new URLSearchParams({scope:scope, page:page, per_page:15});
   const search = document.getElementById('moSearch').value.trim();
   if (search) params.set('so_no', search);

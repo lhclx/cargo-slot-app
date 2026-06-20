@@ -1158,9 +1158,14 @@ def get_orders():
     # Scope filter: own (default) or all
     scope = request.args.get('scope', 'own').strip()
 
-    # Only admin can see all; operator/viewer always own
-    if user.get('role') != 'admin':
-        scope = 'own'
+    # Admin always all; viewer can see all but only edit ETD/ETA; operator sees own only
+    if user.get('role') == 'admin':
+        if scope != 'all':
+            scope = 'own'
+    elif user.get('role') == 'viewer':
+        scope = 'all'  # Viewer can see all orders (read-only, can only edit own ETD/ETA)
+    else:
+        scope = 'own'  # operator sees own only
 
     if scope == 'own':
         # Everyone sees only own orders when scope='own'
