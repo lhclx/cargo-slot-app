@@ -1263,7 +1263,8 @@ async function loadMyOrders(page) {
   if (!currentUser) return;
   page = page || 1;
   moPage = page;
-  const params = new URLSearchParams({scope:'own', page:page, per_page:15});
+  const scope = (currentUser.role === 'admin') ? 'all' : 'own';
+  const params = new URLSearchParams({scope:scope, page:page, per_page:15});
   const search = document.getElementById('moSearch').value.trim();
   if (search) params.set('so_no', search);
   const status = document.getElementById('moStatus').value;
