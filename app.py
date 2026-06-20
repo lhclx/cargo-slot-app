@@ -1605,12 +1605,13 @@ def index():
     return send_html()
 
 def send_html():
-    import time
     with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'index.html'), 'r', encoding='utf-8') as f:
         html = f.read()
-    # Cache-bust: inject timestamp to force browser reload
-    ts = str(int(time.time()))
-    html = html.replace('index.html', 'index.html?v=' + ts)
+    # Inject anti-cache meta tags
+    cache_meta = '''<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">'''
+    html = html.replace('<head>', '<head>\n' + cache_meta)
     return html, {'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-cache, no-store, must-revalidate'}
 
 if __name__ == '__main__':
