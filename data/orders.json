@@ -164,14 +164,14 @@
     "remark": "BSA,允许超订，JT2026061800",
     "cut_vgm": "",
     "cut_si": "6月27 15:00",
-    "etd": "7月1",
+    "etd": "2026-07-01",
     "eta": "",
     "truck": "",
     "customs": "",
     "payable": "",
     "receivable": "",
     "released": "",
-    "updated_at": "2026-06-21 00:32",
+    "updated_at": "2026-06-21 00:45",
     "id": 9,
     "created_at": "2026-06-21 00:31",
     "owner": 2
@@ -198,7 +198,7 @@
     "payable": "",
     "receivable": "",
     "released": "",
-    "updated_at": "2026-06-21 00:32",
+    "updated_at": "2026-06-21 00:45",
     "id": 10,
     "created_at": "2026-06-21 00:31",
     "owner": 2
@@ -225,7 +225,7 @@
     "payable": "",
     "receivable": "",
     "released": "",
-    "updated_at": "2026-06-21 00:32",
+    "updated_at": "2026-06-21 00:45",
     "id": 11,
     "created_at": "2026-06-21 00:31",
     "owner": 2
@@ -252,7 +252,7 @@
     "payable": "",
     "receivable": "",
     "released": "",
-    "updated_at": "2026-06-21 00:32",
+    "updated_at": "2026-06-21 00:45",
     "id": 12,
     "created_at": "2026-06-21 00:31",
     "owner": 2
@@ -279,7 +279,7 @@
     "payable": "",
     "receivable": "",
     "released": "",
-    "updated_at": "2026-06-21 00:32",
+    "updated_at": "2026-06-21 00:45",
     "id": 13,
     "created_at": "2026-06-21 00:31",
     "owner": 2
@@ -306,7 +306,7 @@
     "payable": "",
     "receivable": "",
     "released": "",
-    "updated_at": "2026-06-21 00:32",
+    "updated_at": "2026-06-21 00:45",
     "id": 14,
     "created_at": "2026-06-21 00:31",
     "owner": 2
@@ -333,7 +333,7 @@
     "payable": "",
     "receivable": "",
     "released": "",
-    "updated_at": "2026-06-21 00:32",
+    "updated_at": "2026-06-21 00:45",
     "id": 15,
     "created_at": "2026-06-21 00:31",
     "owner": 2
@@ -360,7 +360,7 @@
     "payable": "",
     "receivable": "",
     "released": "",
-    "updated_at": "2026-06-21 00:32",
+    "updated_at": "2026-06-21 00:45",
     "id": 16,
     "created_at": "2026-06-21 00:31",
     "owner": 2
@@ -387,7 +387,7 @@
     "payable": "",
     "receivable": "",
     "released": "",
-    "updated_at": "2026-06-21 00:32",
+    "updated_at": "2026-06-21 00:45",
     "id": 17,
     "created_at": "2026-06-21 00:31",
     "owner": 2
@@ -414,7 +414,7 @@
     "payable": "",
     "receivable": "",
     "released": "",
-    "updated_at": "2026-06-21 00:32",
+    "updated_at": "2026-06-21 00:45",
     "id": 18,
     "created_at": "2026-06-21 00:31",
     "owner": 2
@@ -441,7 +441,7 @@
     "payable": "",
     "receivable": "",
     "released": "",
-    "updated_at": "2026-06-21 00:32",
+    "updated_at": "2026-06-21 00:45",
     "id": 19,
     "created_at": "2026-06-21 00:31",
     "owner": 2
@@ -468,7 +468,7 @@
     "payable": "",
     "receivable": "",
     "released": "",
-    "updated_at": "2026-06-21 00:32",
+    "updated_at": "2026-06-21 00:45",
     "id": 20,
     "created_at": "2026-06-21 00:31",
     "owner": 2
@@ -495,7 +495,7 @@
     "payable": "",
     "receivable": "",
     "released": "",
-    "updated_at": "2026-06-21 00:32",
+    "updated_at": "2026-06-21 00:45",
     "id": 21,
     "created_at": "2026-06-21 00:31",
     "owner": 2
@@ -522,7 +522,7 @@
     "payable": "",
     "receivable": "",
     "released": "",
-    "updated_at": "2026-06-21 00:32",
+    "updated_at": "2026-06-21 00:45",
     "id": 22,
     "created_at": "2026-06-21 00:31",
     "owner": 2
@@ -549,7 +549,7 @@
     "payable": "",
     "receivable": "",
     "released": "",
-    "updated_at": "2026-06-21 00:32",
+    "updated_at": "2026-06-21 00:45",
     "id": 23,
     "created_at": "2026-06-21 00:31",
     "owner": 2
@@ -576,7 +576,7 @@
     "payable": "",
     "receivable": "",
     "released": "",
-    "updated_at": "2026-06-21 00:32",
+    "updated_at": "2026-06-21 00:45",
     "id": 24,
     "created_at": "2026-06-21 00:31",
     "owner": 2

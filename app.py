@@ -386,6 +386,36 @@ def get_users():
         'created_at': u.get('created_at', '')
     } for u in users])
 
+@app.route('/api/users', methods=['POST'])
+@require_admin
+def add_user():
+    body = request.get_json() or {}
+    username = str(body.get('username', '')).strip()
+    password = str(body.get('password', '')).strip()
+    nickname = str(body.get('nickname', '')).strip() or username
+    role = str(body.get('role', 'viewer')).strip().lower()
+    if not username:
+        return jsonify({'error': '用户名不能为空'}), 400
+    if not password:
+        return jsonify({'error': '密码不能为空'}), 400
+    if role not in ('admin', 'operator', 'viewer'):
+        role = 'viewer'
+    users = load_users()
+    if any(u['username'] == username for u in users):
+        return jsonify({'error': f'用户名 {username} 已存在'}), 400
+    new_user = {
+        'id': max(u['id'] for u in users) + 1,
+        'username': username,
+        'password_hash': hash_password(password),
+        'nickname': nickname,
+        'role': role,
+        'permissions': [],
+        'created_at': datetime.datetime.now().strftime('%Y-%m-%d %H:%M')
+    }
+    users.append(new_user)
+    save_users(users)
+    return jsonify({**new_user, 'password_hash': None}), 201
+
 @app.route('/api/users/<int:user_id>', methods=['PUT'])
 @require_admin
 def update_user(user_id):
