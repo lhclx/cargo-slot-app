@@ -9,7 +9,7 @@ with open(ORDERS_FILE, 'r', encoding='utf-8') as f:
 
 NEW_FIELDS = ['carrier', 'so_no', 'booking_no', 'port_loading', 'port_discharge',
               'container_type', 'quantity', 'container_no', 'seal_no', 'client', 'sale_price',
-              'remark', 'cut_vgm', 'cut_si', 'truck', 'customs', 'payable',
+              'remark', 'cut_vgm', 'cut_si', 'etd', 'eta', 'truck', 'customs', 'payable',
               'receivable', 'released', 'owner', 'created_at', 'updated_at']
 
 migrated = 0

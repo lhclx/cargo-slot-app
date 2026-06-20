@@ -343,7 +343,7 @@ tr:hover td{background:#f8f9fa;}
         <input type="text" id="moSearch" placeholder="🔍 搜索订单号/客户..." oninput="loadMyOrders()" style="padding:7px 12px;border:1px solid var(--bdr);border-radius:6px;font-size:13px;width:200px;">
       </div>
       <div style="display:flex;gap:8px;">
-        <button class="btn btn-g" onclick="openOrderModal()">＋ 新建订单</button>
+        <button class="btn btn-g" onclick="openOrderModal()" id="btnNewOrder">＋ 新建订单</button>
         <button class="btn btn-p" onclick="exportOrders()">📥 导出Excel</button>
         <button class="btn btn-p" onclick="document.getElementById('orderImportFile').click()">📤 导入数据</button>
         <input type="file" id="orderImportFile" accept=".xlsx" style="display:none" onchange="importOrders(this.files[0])">
@@ -351,7 +351,7 @@ tr:hover td{background:#f8f9fa;}
         <button class="btn btn-p" onclick="loadMyOrders()">🔄 刷新</button>
       </div>
     </div>
-    <div class="tw"><table><thead><tr><th>ID</th><th>船司</th><th>SO号</th><th>约号</th><th>起运港</th><th>目的港</th><th>柜型</th><th>数量</th><th>箱号</th><th>封号</th><th>分配客户</th><th>销售价格</th><th>备注</th><th>截VGM</th><th>截SI</th><th>拖车</th><th>报关</th><th>应付</th><th>应收</th><th>放单</th><th>创建人</th><th>操作</th></tr></thead><tbody id="moTb"></tbody></table></div>
+    <div class="tw"><table><thead><tr><th>ID</th><th>船司</th><th>SO号</th><th>约号</th><th>起运港</th><th>目的港</th><th>柜型</th><th>数量</th><th>箱号</th><th>封号</th><th>分配客户</th><th>销售价格</th><th>备注</th><th>截VGM</th><th>截SI</th><th>ETD</th><th>ETA</th><th>拖车</th><th>报关</th><th>应付</th><th>应收</th><th>放单</th><th>创建人</th><th>操作</th></tr></thead><tbody id="moTb"></tbody></table></div>
     <div id="moPager" style="margin-top:12px;display:flex;align-items:center;justify-content:space-between;padding:8px 16px;background:var(--card);border-radius:8px;font-size:12px;color:var(--lt);"></div>
   </div>
 </div>
@@ -518,25 +518,27 @@ tr:hover td{background:#f8f9fa;}
   <h2 id="omt">新建订单</h2>
   <input type="hidden" id="oId">
   <div class="fg" style="max-height:60vh;overflow-y:auto;padding-right:8px;">
-    <div class="fg"><label>船司</label><input type="text" id="oCarrier" placeholder="MSC"></div>
-    <div class="fg"><label>SO号 *</label><input type="text" id="oSoNo" required placeholder="如 MEDUN7388390"></div>
-    <div class="fg"><label>约号</label><input type="text" id="oBookinNo" placeholder="BK2026001"></div>
-    <div class="fg"><label>起运港</label><input type="text" id="oPol" placeholder="NINGBO"></div>
-    <div class="fg"><label>目的港</label><input type="text" id="oPod" placeholder="NZAKL"></div>
-    <div class="fg"><label>柜型</label><input type="text" id="oContainerType" placeholder="40HQ"></div>
-    <div class="fg"><label>数量</label><input type="number" id="oQuantity" placeholder="1" min="1"></div>
-    <div class="fg"><label>箱号</label><input type="text" id="oContainerNo" placeholder="如 MSCU1234567"></div>
-    <div class="fg"><label>封号</label><input type="text" id="oSealNo" placeholder="如 123456"></div>
-    <div class="fg"><label>分配客户</label><input type="text" id="oClient" placeholder="客户名称"></div>
-    <div class="fg"><label>销售价格(USD)</label><input type="number" step="0.01" id="oSalePrice" placeholder="0"></div>
-    <div class="fg fl"><label>备注</label><textarea id="oRemark" rows="2" placeholder="备注信息"></textarea></div>
-    <div class="fg"><label>截VGM</label><input type="date" id="oCutVgm"></div>
-    <div class="fg"><label>截SI</label><input type="date" id="oCutSi"></div>
-    <div class="fg"><label>拖车</label><input type="text" id="oTruck" placeholder="拖车信息"></div>
-    <div class="fg"><label>报关</label><input type="text" id="oCustoms" placeholder="报关信息"></div>
-    <div class="fg"><label>应付</label><input type="number" step="0.01" id="oPayable" placeholder="0"></div>
-    <div class="fg"><label>应收</label><input type="number" step="0.01" id="oReceivable" placeholder="0"></div>
-    <div class="fg"><label>放单</label><select id="oReleased"><option>否</option><option>是</option></select></div>
+    <div class="fg"><label>船司</label><input type="text" id="oCarrier" placeholder="MSC" class="viewer-locked"></div>
+    <div class="fg"><label>SO号 *</label><input type="text" id="oSoNo" required placeholder="如 MEDUN7388390" class="viewer-locked"></div>
+    <div class="fg"><label>约号</label><input type="text" id="oBookinNo" placeholder="BK2026001" class="viewer-locked"></div>
+    <div class="fg"><label>起运港</label><input type="text" id="oPol" placeholder="NINGBO" class="viewer-locked"></div>
+    <div class="fg"><label>目的港</label><input type="text" id="oPod" placeholder="NZAKL" class="viewer-locked"></div>
+    <div class="fg"><label>柜型</label><input type="text" id="oContainerType" placeholder="40HQ" class="viewer-locked"></div>
+    <div class="fg"><label>数量</label><input type="number" id="oQuantity" placeholder="1" min="1" class="viewer-locked"></div>
+    <div class="fg"><label>箱号</label><input type="text" id="oContainerNo" placeholder="如 MSCU1234567" class="viewer-locked"></div>
+    <div class="fg"><label>封号</label><input type="text" id="oSealNo" placeholder="如 123456" class="viewer-locked"></div>
+    <div class="fg"><label>分配客户</label><input type="text" id="oClient" placeholder="客户名称" class="viewer-locked"></div>
+    <div class="fg"><label>销售价格(USD)</label><input type="number" step="0.01" id="oSalePrice" placeholder="0" class="viewer-locked"></div>
+    <div class="fg fl"><label>备注</label><textarea id="oRemark" rows="2" placeholder="备注信息" class="viewer-locked"></textarea></div>
+    <div class="fg"><label>截VGM</label><input type="date" id="oCutVgm" class="viewer-locked"></div>
+    <div class="fg"><label>截SI</label><input type="date" id="oCutSi" class="viewer-locked"></div>
+    <div class="fg"><label>ETD</label><input type="date" id="oEtd" class="viewer-editable"></div>
+    <div class="fg"><label>ETA</label><input type="date" id="oEta" class="viewer-editable"></div>
+    <div class="fg"><label>拖车</label><input type="text" id="oTruck" placeholder="拖车信息" class="viewer-locked"></div>
+    <div class="fg"><label>报关</label><input type="text" id="oCustoms" placeholder="报关信息" class="viewer-locked"></div>
+    <div class="fg"><label>应付</label><input type="number" step="0.01" id="oPayable" placeholder="0" class="viewer-locked"></div>
+    <div class="fg"><label>应收</label><input type="number" step="0.01" id="oReceivable" placeholder="0" class="viewer-locked"></div>
+    <div class="fg"><label>放单</label><select id="oReleased" class="viewer-locked"><option>否</option><option>是</option></select></div>
   </div>
   <div class="mft">
     <button type="button" class="btn btn-s" style="background:var(--bdr)" onclick="closeOrderModal()">取消</button>
@@ -567,6 +569,9 @@ async function checkAuth() {
       document.getElementById('mainContent').style.display = 'block';
       document.getElementById('userNickname').textContent = currentUser.nickname || currentUser.username;
       document.getElementById('userRole').textContent = currentUser.role;
+      // Hide new order button for viewers
+      const btnNew = document.getElementById('btnNewOrder');
+      if (btnNew) btnNew.style.display = currentUser.role === 'viewer' ? 'none' : '';
       // Load main data
       refreshData();
     } else {
@@ -1278,7 +1283,7 @@ async function loadMyOrders(page) {
 function renderMyOrders(orders) {
   const tb = document.getElementById('moTb');
   if (!tb) return;
-  if (!orders.length) { tb.innerHTML='<tr><td colspan="22" style="text-align:center;color:#999;padding:40px;">📦 暂无订单，点击「新建订单」添加</td></tr>'; return; }
+  if (!orders.length) { tb.innerHTML='<tr><td colspan="24" style="text-align:center;color:#999;padding:40px;">📦 暂无订单，点击「新建订单」添加</td></tr>'; return; }
   tb.innerHTML = orders.map(o => {
     return `<tr>
       <td>${o.id}</td>
@@ -1296,6 +1301,8 @@ function renderMyOrders(orders) {
       <td style="max-width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${esc(o.remark||'')}">${esc(o.remark||'')}</td>
       <td>${esc((o.cut_vgm||'').slice(0,10))}</td>
       <td>${esc((o.cut_si||'').slice(0,10))}</td>
+      <td>${esc((o.etd||'').slice(0,10))}</td>
+      <td>${esc((o.eta||'').slice(0,10))}</td>
       <td>${esc(o.truck||'')}</td>
       <td>${esc(o.customs||'')}</td>
       <td>${o.payable||''}</td>
@@ -1304,7 +1311,7 @@ function renderMyOrders(orders) {
       <td>${esc(o._owner_name||'')}</td>
       <td class="act">
         <button class="btn btn-s btn-p" onclick="editOrderItem(${o.id})" title="编辑">✏️</button>
-        <button class="btn btn-s btn-r" onclick="deleteOrderItem(${o.id})" title="删除">🗑️</button>
+        ${currentUser && currentUser.role==='viewer' ? '' : '<button class="btn btn-s btn-r" onclick="deleteOrderItem('+o.id+')" title="删除">🗑️</button>'}
       </td>
     </tr>`;
   }).join('');
@@ -1353,9 +1360,13 @@ function rebuildOpSelect(sel, ops, curVal) {
 function esc(s) { if(!s) return ''; const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
 
 function openOrderModal() {
+  // Viewer cannot create new orders
+  if (currentUser && currentUser.role === 'viewer') {
+    alert('查看者无法新建订单，只能修改ETD/ETA'); return;
+  }
   moEditingId = null;
   document.getElementById('omt').textContent = '新建订单';
-  ['oId','oCarrier','oSoNo','oBookinNo','oPol','oPod','oContainerType','oQuantity','oContainerNo','oSealNo','oClient','oSalePrice','oRemark','oCutVgm','oCutSi','oTruck','oCustoms','oPayable','oReceivable','oReleased'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  ['oId','oCarrier','oSoNo','oBookinNo','oPol','oPod','oContainerType','oQuantity','oContainerNo','oSealNo','oClient','oSalePrice','oRemark','oCutVgm','oCutSi','oEtd','oEta','oTruck','oCustoms','oPayable','oReceivable','oReleased'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
   document.getElementById('oReleased').value='否';
   document.getElementById('orderModal').classList.add('on');
 }
@@ -1382,11 +1393,19 @@ async function editOrderItem(id) {
     document.getElementById('oRemark').value = o.remark||'';
     document.getElementById('oCutVgm').value = (o.cut_vgm||'').slice(0,10);
     document.getElementById('oCutSi').value = (o.cut_si||'').slice(0,10);
+    document.getElementById('oEtd').value = (o.etd||'').slice(0,10);
+    document.getElementById('oEta').value = (o.eta||'').slice(0,10);
     document.getElementById('oTruck').value = o.truck||'';
     document.getElementById('oCustoms').value = o.customs||'';
     document.getElementById('oPayable').value = o.payable||'';
     document.getElementById('oReceivable').value = o.receivable||'';
     document.getElementById('oReleased').value = o.released||'否';
+    // Viewer: lock all fields except ETD/ETA
+    if (currentUser && currentUser.role === 'viewer') {
+      document.querySelectorAll('#orderModal .viewer-locked').forEach(el => el.disabled = true);
+    } else {
+      document.querySelectorAll('#orderModal .viewer-locked').forEach(el => el.disabled = false);
+    }
     document.getElementById('orderModal').classList.add('on');
   } catch(e) { alert('加载失败: '+e.message); }
 }
@@ -1394,6 +1413,8 @@ async function editOrderItem(id) {
 function closeOrderModal() {
   document.getElementById('orderModal').classList.remove('on');
   moEditingId = null;
+  // Re-enable all locked fields for next open
+  document.querySelectorAll('#orderModal .viewer-locked').forEach(el => el.disabled = false);
 }
 
 async function saveOrderItem() {
@@ -1414,6 +1435,10 @@ async function saveOrderItem() {
     remark: document.getElementById('oRemark').value.trim(),
     cut_vgm: document.getElementById('oCutVgm').value || null,
     cut_si: document.getElementById('oCutSi').value || null,
+    etd: document.getElementById('oEtd').value || null,
+    eta: document.getElementById('oEta').value || null,
+    etd: document.getElementById('oEtd').value || null,
+    eta: document.getElementById('oEta').value || null,
     truck: document.getElementById('oTruck').value.trim(),
     customs: document.getElementById('oCustoms').value.trim(),
     payable: parseFloat(document.getElementById('oPayable').value)||0,

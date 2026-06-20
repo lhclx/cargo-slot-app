@@ -1106,6 +1106,8 @@ ORDER_FIELDS = [
     'remark',         # 备注
     'cut_vgm',        # 截VGM时间(日期)
     'cut_si',         # 截SI时间(日期)
+    'etd',            # 预计开船日
+    'eta',            # 预计到港日
     'truck',          # 拖车(文本)
     'customs',        # 报关(文本)
     'payable',        # 应付(金额)
@@ -1241,14 +1243,34 @@ def add_order():
     return jsonify(clean), 201
 
 @app.route('/api/orders/<int:order_id>', methods=['PUT'])
-@require_writer
+@require_auth
 def update_order(order_id):
     """Update order - admin can edit all, operator can only edit own"""
     user = request.current_user
     data = load_orders()
     for i, o in enumerate(data):
         if o['id'] == order_id:
-            # Permission check
+            # Viewer role: only allowed to edit ETD and ETA of own orders
+            if user.get('role') == 'viewer':
+                if str(o.get('owner', '')) != str(user['id']):
+                    return jsonify({'error': 'Permission denied: can only edit own orders'}), 403
+                # Restrict update to only ETD and ETA fields
+                allowed_fields = {'etd', 'eta'}
+                upd = {k: v for k, v in request.get_json().items() if k in allowed_fields}
+                if not upd:
+                    return jsonify({'error': 'Viewer can only modify ETD and ETA'}), 403
+                # Preserve all other fields
+                clean = {k: v for k, v in o.items() if k in ORDER_FIELDS or k in ('id', 'created_at', 'updated_at', 'owner')}
+                clean.update(upd)
+                clean['updated_at'] = datetime.datetime.now().strftime('%Y-%m-%d %H:%M')
+                clean['id'] = order_id
+                clean['created_at'] = o.get('created_at', '')
+                clean['owner'] = o.get('owner', user['id'])
+                data[i] = clean
+                save_orders(data)
+                return jsonify(clean)
+
+            # Admin/operator: full edit (must own unless admin)
             if user.get('role') != 'admin' and str(o.get('owner', '')) != str(user['id']):
                 return jsonify({'error': 'Permission denied: can only edit own orders'}), 403
 
@@ -1314,7 +1336,7 @@ def export_orders():
 
     # 表头(蓝色背景)
     headers = ['ID', '船司', 'SO号', '约号', '起运港', '目的港', '柜型', '数量', '箱号', '封号',
-               '分配客户', '销售价格', '备注', '截VGM', '截SI', '拖车', '报关', '应付', '应收', '放单']
+               '分配客户', '销售价格', '备注', '截VGM', '截SI', 'ETD', 'ETA', '拖车', '报关', '应付', '应收', '放单']
 
     from openpyxl.styles import Font, Alignment, PatternFill, Border, Side
     hd_font = Font(bold=True, color='FFFFFF', size=11)
@@ -1333,7 +1355,7 @@ def export_orders():
         cell.border = thin_border
 
     # 列宽
-    widths = [8, 12, 15, 15, 12, 12, 10, 8, 18, 18, 15, 12, 20, 12, 12, 15, 15, 12, 12, 10]
+    widths = [8, 12, 15, 15, 12, 12, 10, 8, 18, 18, 15, 12, 20, 12, 12, 12, 12, 15, 15, 12, 12, 10]
     from openpyxl.utils import get_column_letter
     for ci, w in enumerate(widths, 1):
         ws.column_dimensions[get_column_letter(ci)].width = w
@@ -1357,6 +1379,8 @@ def export_orders():
             item.get('remark', ''),
             item.get('cut_vgm', ''),
             item.get('cut_si', ''),
+            item.get('etd', ''),
+            item.get('eta', ''),
             item.get('truck', ''),
             item.get('customs', ''),
             item.get('payable', ''),
@@ -1437,11 +1461,13 @@ def import_orders():
                     'remark': str(row[12] or '').strip() if len(row) > 12 else '',
                     'cut_vgm': normalize_date(row[13]) if len(row) > 13 else '',
                     'cut_si': normalize_date(row[14]) if len(row) > 14 else '',
-                    'truck': str(row[15] or '').strip() if len(row) > 15 else '',
-                    'customs': str(row[16] or '').strip() if len(row) > 16 else '',
-                    'payable': float(row[17]) if len(row) > 17 and row[17] else '',
-                    'receivable': float(row[18]) if len(row) > 18 and row[18] else '',
-                    'released': str(row[19] or '').strip() if len(row) > 19 else '否',
+                    'etd': normalize_date(row[15]) if len(row) > 15 else '',
+                    'eta': normalize_date(row[16]) if len(row) > 16 else '',
+                    'truck': str(row[17] or '').strip() if len(row) > 17 else '',
+                    'customs': str(row[18] or '').strip() if len(row) > 18 else '',
+                    'payable': float(row[19]) if len(row) > 19 and row[19] else '',
+                    'receivable': float(row[20]) if len(row) > 20 and row[20] else '',
+                    'released': str(row[21] or '').strip() if len(row) > 21 else '否',
                     'updated_at': now
                 }
 
@@ -1484,7 +1510,7 @@ def download_order_template():
 
     # 表头
     headers = ['ID', '船司', 'SO号', '约号', '起运港', '目的港', '柜型', '数量', '箱号', '封号',
-               '分配客户', '销售价格', '备注', '截VGM', '截SI', '拖车', '报关', '应付', '应收', '放单']
+               '分配客户', '销售价格', '备注', '截VGM', '截SI', 'ETD', 'ETA', '拖车', '报关', '应付', '应收', '放单']
     ws.append(headers)
 
     # 样式
@@ -1498,7 +1524,8 @@ def download_order_template():
 
     # 示例数据
     ws.append(['', 'MSC', 'MSU2894710', 'BK2026001', 'NINGBO', 'SYDNEY', '40HQ', 1, 'MSCU1234567', '123456',
-               'Client A', 2800.00, '紧急订单', '2026-07-01', '2026-06-28', '张三卡车', '李四报关', 2000.00, 2800.00, '否'])
+               'Client A', 2800.00, '紧急订单', '2026-07-01', '2026-06-28', '2026-06-30', '2026-07-15',
+               '张三卡车', '李四报关', 2000.00, 2800.00, '否'])
 
     # 列宽
     ws.column_dimensions['A'].width = 8
@@ -1515,11 +1542,13 @@ def download_order_template():
     ws.column_dimensions['L'].width = 20
     ws.column_dimensions['M'].width = 12
     ws.column_dimensions['N'].width = 12
-    ws.column_dimensions['O'].width = 15
-    ws.column_dimensions['P'].width = 15
-    ws.column_dimensions['Q'].width = 12
-    ws.column_dimensions['R'].width = 12
-    ws.column_dimensions['S'].width = 10
+    ws.column_dimensions['O'].width = 12
+    ws.column_dimensions['P'].width = 12
+    ws.column_dimensions['Q'].width = 15
+    ws.column_dimensions['R'].width = 15
+    ws.column_dimensions['S'].width = 12
+    ws.column_dimensions['T'].width = 12
+    ws.column_dimensions['U'].width = 10
 
     # 保存到内存
     output = BytesIO()
