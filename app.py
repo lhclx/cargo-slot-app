@@ -1190,8 +1190,7 @@ def get_orders():
 
     # Admin always all; viewer can see all but only edit ETD/ETA; operator sees own only
     if user.get('role') == 'admin':
-        if scope != 'all':
-            scope = 'own'
+        scope = 'all'  # admin always sees all
     elif user.get('role') == 'viewer':
         scope = 'all'  # Viewer can see all orders (read-only, can only edit own ETD/ETA)
     else:
@@ -1606,8 +1605,13 @@ def index():
     return send_html()
 
 def send_html():
+    import time
     with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'index.html'), 'r', encoding='utf-8') as f:
-        return f.read(), {'Content-Type': 'text/html; charset=utf-8'}
+        html = f.read()
+    # Cache-bust: inject timestamp to force browser reload
+    ts = str(int(time.time()))
+    html = html.replace('index.html', 'index.html?v=' + ts)
+    return html, {'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-cache, no-store, must-revalidate'}
 
 if __name__ == '__main__':
     import os

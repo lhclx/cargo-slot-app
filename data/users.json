@@ -38,5 +38,23 @@
     "nickname": "测试查看者",
     "permissions": [],
     "created_at": "2026-06-20 03:21:41"
+  },
+  {
+    "id": 5,
+    "username": "mia",
+    "password_hash": "pbkdf2:sha256:100000$df5466a14e40292d92474ee1115131b3$e02d9d34b3a0a55fa739630e49c757e9d4dae80128d53989857233d9049477e6",
+    "nickname": "mia",
+    "role": "operator",
+    "permissions": [],
+    "created_at": "2026-06-21 00:50"
+  },
+  {
+    "id": 6,
+    "username": "bree",
+    "password_hash": "pbkdf2:sha256:100000$e83f0b64ceb4f04c86717dff6c5ade8c$454be6201e90104953ac01523129eb7991e0adc4224e5015f4481328f3e94fff",
+    "nickname": "bree",
+    "role": "operator",
+    "permissions": [],
+    "created_at": "2026-06-21 00:51"
   }
 ]
