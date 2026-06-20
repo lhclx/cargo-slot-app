@@ -9,27 +9,35 @@
   --g:#28a745;--y:#ffc107;--b:#17a2b8;--o:#fd7e14;--gy:#6c757d;}
 *{margin:0;padding:0;box-sizing:border-box;}
 body{font-family:-apple-system,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--txt);}
-.hd{background:var(--pri);color:#fff;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.hd{background:var(--pri);color:#fff;padding:18px 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
 .hd h1{font-size:20px;font-weight:600;}
-.hd-btns{display:flex;gap:8px;flex-wrap:wrap;}
+.hd-btns{display:flex;gap:8px;flex-wrap:wrap;align-items:center;}
 .btn{padding:8px 16px;border:none;border-radius:6px;cursor:pointer;font-size:13px;font-weight:500;transition:.2s;}
 .btn-p{background:#fff;color:var(--pri);}.btn-p:hover{background:#e8edf5;}
 .btn-g{background:var(--g);color:#fff;}.btn-g:hover{opacity:.9;}
 .btn-r{background:#dc3545;color:#fff;}.btn-r:hover{opacity:.9;}
 .btn-s{padding:5px 10px;font-size:12px;}
-.ct{max-width:1400px;margin:0 auto;padding:16px;}
+.ct{max-width:1880px;margin:0 auto;padding:20px 24px;}
 /* stats */
-.srow{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:16px;}
+.srow{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-bottom:16px;}
+.teu-bar{background:var(--card);border-radius:10px;padding:14px 18px;margin-bottom:14px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;box-shadow:0 1px 3px rgba(0,0,0,.08);}
+.teu-label{font-weight:600;color:var(--pri);font-size:13px;white-space:nowrap;}
+#fWeek{padding:6px 10px;border:1px solid var(--bdr);border-radius:6px;font-size:13px;min-width:120px;}
+.teu-cards{display:flex;gap:10px;flex-wrap:wrap;}
+.teu-card{border-radius:8px;padding:10px 20px;text-align:center;min-width:90px;flex:1;}
+.teu-n{font-size:26px;font-weight:700;}
+.teu-s{font-size:11px;color:var(--lt);margin-top:2px;}
 .sc{background:var(--card);border-radius:10px;padding:16px;text-align:center;box-shadow:0 1px 3px rgba(0,0,0,.08);}
 .sn{font-size:28px;font-weight:700;color:var(--pri);}
 .sl{font-size:12px;color:var(--lt);margin-top:4px;}
 /* filter */
-.fbar{background:var(--card);border-radius:10px;padding:12px 16px;margin-bottom:16px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;box-shadow:0 1px 3px rgba(0,0,0,.08);}
+.fbar{background:var(--card);border-radius:10px;padding:14px 18px;margin-bottom:16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;box-shadow:0 1px 3px rgba(0,0,0,.08);}
 .fbar select,.fbar input{padding:7px 10px;border:1px solid var(--bdr);border-radius:6px;font-size:13px;}
 /* table */
-.tw{background:var(--card);border-radius:10px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.08);}
-table{width:100%;border-collapse:collapse;font-size:13px;}
+.tw{background:var(--card);border-radius:10px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.08);overflow-x:auto;-webkit-overflow-scrolling:touch;}
+table{width:max-content;min-width:100%;border-collapse:collapse;font-size:13px;}
 th{background:var(--pri);color:#fff;padding:10px 6px;text-align:center;font-weight:600;white-space:nowrap;position:sticky;top:0;z-index:1;}
+@media(max-width:768px){th{position:static;}}
 td{padding:8px 5px;text-align:center;border-bottom:1px solid #f1f3f5;vertical-align:middle;}
 tr:hover td{background:#f8f9fa;}
 /* badge */
@@ -41,7 +49,7 @@ tr:hover td{background:#f8f9fa;}
 /* modal */
 .ov{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.5);z-index:100;justify-content:center;align-items:center;}
 .ov.on{display:flex;}
-.md{background:#fff;border-radius:14px;width:90%;max-width:700px;max-height:90vh;overflow-y:auto;padding:24px;}
+.md{background:#fff;border-radius:14px;width:94%;max-width:860px;max-height:90vh;overflow-y:auto;padding:28px;}
 .md h2{margin-bottom:20px;font-size:18px;color:var(--pri);}
 .fg{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
 .fg.fl{grid-column:1/-1;}
@@ -64,31 +72,254 @@ tr:hover td{background:#f8f9fa;}
 .es{text-align:center;padding:60px 20px;color:var(--lt);}
 .es .ic{font-size:48px;margin-bottom:12px;}
 @media(max-width:768px){.fg{grid-template-columns:1fr;}.srow{grid-template-columns:repeat(2,1fr);}table{font-size:11px;}td,th{padding:6px 3px;}}
+
+/* Login overlay */
+#loginView {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, var(--pri) 0%, #1a3a6e 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+.login-box {
+  background: var(--card);
+  border-radius: 16px;
+  padding: 40px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+.login-box h2 {
+  text-align: center;
+  color: var(--pri);
+  margin-bottom: 30px;
+  font-size: 24px;
+}
+.login-box .form-group {
+  margin-bottom: 20px;
+}
+.login-box label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--lt);
+}
+.login-box input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid var(--bdr);
+  border-radius: 8px;
+  font-size: 14px;
+  transition: border-color 0.2s;
+}
+.login-box input:focus {
+  outline: none;
+  border-color: var(--pri);
+}
+.login-box button {
+  width: 100%;
+  padding: 12px;
+  background: var(--pri);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.login-box button:hover {
+  opacity: 0.9;
+}
+.login-msg {
+  margin-top: 15px;
+  text-align: center;
+  font-size: 13px;
+  min-height: 20px;
+}
+.login-msg.error { color: #dc3545; }
+.login-msg.success { color: #28a745; }
+
+/* User menu */
+.user-menu {
+  position: relative;
+  display: inline-block;
+}
+.user-menu-btn {
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.3);
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: 0.2s;
+}
+.user-menu-btn:hover {
+  background: rgba(255,255,255,0.25);
+}
+.user-menu-dropdown {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 100%;
+  margin-top: 8px;
+  background: var(--card);
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  min-width: 180px;
+  z-index: 200;
+  overflow: hidden;
+}
+.user-menu-dropdown.on {
+  display: block;
+}
+.user-menu-dropdown button {
+  display: block;
+  width: 100%;
+  padding: 12px 16px;
+  text-align: left;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+  color: var(--txt);
+  transition: 0.2s;
+}
+.user-menu-dropdown button:hover {
+  background: #f5f7fa;
+}
+.user-menu-dropdown button.danger {
+  color: #dc3545;
+}
+.user-menu-dropdown .divider {
+  height: 1px;
+  background: var(--bdr);
+  margin: 4px 0;
+}
+
+/* User management table */
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+  font-size: 13px;
+}
+.user-table th {
+  background: var(--pri);
+  color: #fff;
+  padding: 10px;
+  text-align: left;
+  font-weight: 600;
+}
+.user-table td {
+  padding: 10px;
+  border-bottom: 1px solid var(--bdr);
+}
+.user-table tr:hover td {
+  background: #f8f9fa;
+}
 </style>
 </head>
 <body>
-<div class="hd">
-  <h1>🚢 货代舱位管理系统</h1>
-  <div class="hd-btns">
-    <button class="btn btn-p" onclick="openModal()">+ 新增舱位</button>
-    <button class="btn btn-g" onclick="exportData()">📥 导出</button>
-    <button class="btn btn-p" onclick="refreshData()">🔄 刷新</button>
+
+<!-- Login Overlay -->
+<div id="loginView">
+  <div class="login-box">
+    <h2>🚢 货代舱位管理系统</h2>
+    <div class="form-group">
+      <label>用户名</label>
+      <input type="text" id="loginUsername" placeholder="请输入用户名" autocomplete="username">
+    </div>
+    <div class="form-group">
+      <label>密码</label>
+      <input type="password" id="loginPassword" placeholder="请输入密码" autocomplete="current-password">
+    </div>
+    <button onclick="doLogin()">登 录</button>
+    <div id="loginMsg" class="login-msg"></div>
   </div>
 </div>
-<div class="ct">
+
+<div class="hd">
+  <h1>🚢 货代舱位管理系统 <a href="/orders" style="color:#fff;font-size:13px;font-weight:400;margin-left:12px;text-decoration:underline;text-underline-offset:3px;">📋 海运订单</a></h1>
+  <div class="hd-btns">
+    <button class="btn btn-p" onclick="openModal()">+ 新增舱位</button>
+    <a href="/orders" class="btn btn-p" style="text-decoration:none;display:inline-block;">📋 订单管理</a>
+    <button class="btn btn-g" onclick="exportData()">📥 导出</button>
+    <button class="btn btn-p" onclick="openImportModal()">📤 导入</button>
+    <button class="btn btn-p" onclick="downloadTemplate()">📄 下载模板</button>
+    <button class="btn btn-p" onclick="refreshData()">🔄 刷新</button>
+    <button class="btn btn-p" onclick="document.getElementById('soFileInput').click()">📷 识别SO</button>
+    <input type="file" id="soFileInput" accept=".png,.jpg,.jpeg,.gif,.bmp,.webp,.pdf" style="display:none">
+    <span id="soRecognizeStatus" style="font-size:12px;color:#666"></span>
+    
+    <!-- User Menu -->
+    <div class="user-menu" id="userMenu">
+      <button class="user-menu-btn" onclick="toggleUserMenu()">
+        <span id="userNickname">用户</span>
+        <span id="userRole" style="font-size:11px;opacity:0.8"></span>
+      </button>
+      <div class="user-menu-dropdown" id="userDropdown">
+        <button onclick="openChangePasswordModal()">🔑 修改密码</button>
+        <button onclick="if(currentUser && currentUser.role==='admin') openUserMgmtModal()">👥 用户管理</button>
+        <div class="divider"></div>
+        <button class="danger" onclick="doLogout()">🚪 退出登录</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="ct" id="mainContent" style="display:none;">
   <div class="srow" id="statsRow"></div>
+  <!-- TEU 统计 -->
+  <div class="teu-bar">
+    <span class="teu-label">📦 TEU 统计 <span style="font-weight:400;color:#888;font-size:11px">(已排除允许超订)</span></span>
+    <div class="teu-cards" id="teuCards">
+      <div class="teu-card" style="background:#e3f0ff">
+        <div class="teu-n" style="color:#2F5496" id="teuBsa">-</div>
+        <div class="teu-s">BSA (TEU)</div>
+      </div>
+      <div class="teu-card" style="background:#eafff0">
+        <div class="teu-n" style="color:#28a745" id="teuLtr">-</div>
+        <div class="teu-s">LTR (TEU)</div>
+      </div>
+      <div class="teu-card" style="background:#fff8e3">
+        <div class="teu-n" style="color:#b07600" id="teuNor">-</div>
+        <div class="teu-s">NOR (TEU)</div>
+      </div>
+      <div class="teu-card" style="background:#f5f0ff">
+        <div class="teu-n" style="color:#6f42c1" id="teuTotal">-</div>
+        <div class="teu-s">总计 (TEU)</div>
+      </div>
+    </div>
+  </div>
   <div class="tabs">
     <button class="tab on" onclick="swTab('list')">📋 舱位列表</button>
+    <button class="tab" onclick="swTab('myorders')">📦 我的订单</button>
     <button class="tab" onclick="swTab('chart')">📊 数据统计</button>
+    <button class="tab" onclick="swTab('trash')">🗑️ 回收站</button>
   </div>
   <div class="fbar" id="filterBar">
+    <select id="fWeek" onchange="loadSlots()" title="按周筛选"><option value="">全部周</option></select>
     <select id="fs" onchange="loadSlots()"><option value="">全部状态</option><option>空闲</option><option>已预订</option><option>已确认</option><option>已放货</option><option>已完结</option></select>
     <select id="fc" onchange="loadSlots()"><option value="">全部船公司</option></select>
     <select id="fo" onchange="loadSlots()"><option value="">全部操作</option></select>
     <input id="fq" placeholder="🔍 搜索SO号/约号/客户..." oninput="loadSlots()">
+    <input type="date" id="fEtdStart" title="ETD开始日期" onchange="loadSlots()">
+    <span style="color:#999">至</span>
+    <input type="date" id="fEtdEnd" title="ETD结束日期" onchange="loadSlots()">
   </div>
   <div id="listView">
-    <div class="tw"><table><thead><tr><th>ID</th><th>船公司</th><th>SO号</th><th>约号</th><th>起运港</th><th>目的港</th><th>柜型</th><th>数量</th><th>ETD</th><th>ETA</th><th>状态</th><th>分配客户</th><th>操作归属</th><th>备注</th><th>操作</th></tr></thead><tbody id="tb"></tbody></table></div>
+    <div class="tw"><table><thead><tr><th>ID</th><th>船公司</th><th>SO号</th><th>约号</th><th>起运港</th><th>目的港</th><th>柜型</th><th>数量</th><th>ETD</th><th>ETA</th><th style="background:#e67e22;color:#fff">周</th><th>状态</th><th>分配客户</th><th>操作归属</th><th>销售价格</th><th>备注</th><th>操作</th></tr></thead><tbody id="tb"></tbody></table></div>
     <div id="es" class="es" style="display:none"><div class="ic">📦</div><p>暂无数据，点击「新增舱位」添加</p></div>
   </div>
   <div id="chartView" style="display:none">
@@ -97,6 +328,161 @@ tr:hover td{background:#f8f9fa;}
     <div class="ca"><h3>📍 按目的港分布</h3><div id="cp" class="cbs"></div></div>
     <div class="ca"><h3>👤 按操作归属分布</h3><div id="co" class="cbs"></div></div>
   </div>
+  <div id="trashView" style="display:none">
+    <div style="padding:12px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center;">
+      <span style="color:#666;">已删除的舱位，可以恢复或彻底删除</span>
+      <button class="btn btn-r" onclick="clearTrash()">🗑️ 清空回收站</button>
+    </div>
+    <div class="tw"><table><thead><tr><th>ID</th><th>船公司</th><th>SO号</th><th>约号</th><th>起运港</th><th>目的港</th><th>柜型</th><th>数量</th><th>ETD</th><th>使用状态</th><th>分配客户</th><th>删除时间</th><th>操作</th></tr></thead><tbody id="tbTrash"></tbody></table></div>
+    <div id="esTrash" class="es" style="display:none"><div class="ic">🗑️</div><p>回收站是空的</p></div>
+  </div>
+  <!-- 我的订单视图 -->
+  <div id="myOrdersView" style="display:none">
+    <div style="padding:8px 0;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
+      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+        <input type="text" id="moSearch" placeholder="🔍 搜索订单号/客户..." oninput="loadMyOrders()" style="padding:7px 12px;border:1px solid var(--bdr);border-radius:6px;font-size:13px;width:200px;">
+      </div>
+      <div style="display:flex;gap:8px;">
+        <button class="btn btn-g" onclick="openOrderModal()">＋ 新建订单</button>
+        <button class="btn btn-p" onclick="exportOrders()">📥 导出Excel</button>
+        <button class="btn btn-p" onclick="document.getElementById('orderImportFile').click()">📤 导入数据</button>
+        <input type="file" id="orderImportFile" accept=".xlsx" style="display:none" onchange="importOrders(this.files[0])">
+        <button class="btn btn-p" onclick="downloadOrderTemplate()">📄 下载模板</button>
+        <button class="btn btn-p" onclick="loadMyOrders()">🔄 刷新</button>
+      </div>
+    </div>
+    <div class="tw"><table><thead><tr><th>ID</th><th>船司</th><th>SO号</th><th>约号</th><th>起运港</th><th>目的港</th><th>柜型</th><th>箱号封号</th><th>分配客户</th><th>销售价格</th><th>备注</th><th>截VGM</th><th>截SI</th><th>拖车</th><th>报关</th><th>应付</th><th>应收</th><th>放单</th><th>操作</th></tr></thead><tbody id="moTb"></tbody></table></div>
+    <div id="moPager" style="margin-top:12px;display:flex;align-items:center;justify-content:space-between;padding:8px 16px;background:var(--card);border-radius:8px;font-size:12px;color:var(--lt);"></div>
+  </div>
+</div>
+
+<!-- Import Modal -->
+<div class="ov" id="importModal">
+<div class="md">
+  <h2>📤 批量导入舱位</h2>
+  <div style="padding:20px;">
+    <p style="margin-bottom:15px;color:#666;">支持 .xlsx / .csv 格式，请先下载模板填写数据</p>
+    <input type="file" id="importFile" accept=".xlsx,.csv" style="margin-bottom:15px;width:100%;">
+    <div id="importProgress" style="display:none;margin-top:15px;">
+      <div style="background:#e9ecef;border-radius:4px;height:20px;overflow:hidden;">
+        <div id="importBar" style="background:#28a745;height:100%;width:0%;transition:width 0.3s;"></div>
+      </div>
+      <p id="importStatus" style="margin-top:8px;font-size:13px;color:#666;"></p>
+    </div>
+    <div id="importResult" style="display:none;margin-top:15px;padding:12px;background:#f8f9fa;border-radius:6px;font-size:13px;"></div>
+  </div>
+  <div class="mft">
+    <button type="button" class="btn btn-s" style="background:#ddd" onclick="closeImportModal()">取消</button>
+    <button type="button" class="btn btn-s btn-g" onclick="uploadFile()">开始导入</button>
+  </div>
+</div>
+</div>
+
+<!-- Change Password Modal -->
+<div class="ov" id="changePwdModal">
+<div class="md" style="max-width:450px;">
+  <h2>🔑 修改密码</h2>
+  <div class="fg">
+    <div class="fg fl">
+      <label>当前密码</label>
+      <input type="password" id="oldPassword" placeholder="请输入当前密码">
+    </div>
+    <div class="fg fl">
+      <label>新密码</label>
+      <input type="password" id="newPassword" placeholder="请输入新密码 (至少6位)">
+    </div>
+    <div class="fg fl">
+      <label>确认新密码</label>
+      <input type="password" id="confirmPassword" placeholder="请再次输入新密码">
+    </div>
+  </div>
+  <div id="changePwdMsg" style="margin-top:15px;font-size:13px;"></div>
+  <div class="mft">
+    <button type="button" class="btn btn-s" style="background:var(--bdr)" onclick="closeChangePasswordModal()">取消</button>
+    <button type="button" class="btn btn-s btn-g" onclick="doChangePassword()">确认修改</button>
+  </div>
+</div>
+</div>
+
+<!-- User Management Modal -->
+<div class="ov" id="userMgmtModal">
+<div class="md" style="max-width:900px;">
+  <h2>👥 用户管理</h2>
+  <button class="btn btn-g" onclick="openAddUserForm()" style="margin-bottom:15px;">+ 新增用户</button>
+  <div id="addUserForm" style="display:none;padding:20px;background:#f8f9fa;border-radius:10px;margin-bottom:20px;">
+    <h3 style="font-size:15px;margin-bottom:15px;color:var(--pri);">新增用户</h3>
+    <div class="fg">
+      <div class="fg">
+        <label>用户名 *</label>
+        <input type="text" id="newUserUsername" placeholder="登录用户名">
+      </div>
+      <div class="fg">
+        <label>密码 *</label>
+        <input type="password" id="newUserPassword" placeholder="密码">
+      </div>
+      <div class="fg">
+        <label>昵称</label>
+        <input type="text" id="newUserNickname" placeholder="显示名称">
+      </div>
+      <div class="fg">
+        <label>角色</label>
+        <select id="newUserRole">
+          <option value="viewer">viewer (查看者)</option>
+          <option value="operator">operator (操作员)</option>
+          <option value="admin">admin (管理员)</option>
+        </select>
+      </div>
+      <div class="fg fl">
+        <label>权限 (逗号分隔)</label>
+        <input type="text" id="newUserPermissions" placeholder="如: slots:read,slots:write">
+      </div>
+    </div>
+    <div id="addUserMsg" style="margin-top:10px;font-size:13px;"></div>
+    <div class="mft">
+      <button type="button" class="btn btn-s" style="background:var(--bdr)" onclick="cancelAddUser()">取消</button>
+      <button type="button" class="btn btn-s btn-g" onclick="doAddUser()">添加</button>
+    </div>
+  </div>
+  <div id="userTableContainer"></div>
+  <div class="mft">
+    <button type="button" class="btn btn-s" style="background:var(--bdr)" onclick="closeUserMgmtModal()">关闭</button>
+  </div>
+</div>
+</div>
+
+<!-- Edit User Modal -->
+<div class="ov" id="editUserModal">
+<div class="md" style="max-width:500px;">
+  <h2>编辑用户</h2>
+  <input type="hidden" id="editUserId">
+  <div class="fg">
+    <div class="fg">
+      <label>用户名</label>
+      <input type="text" id="editUserUsername" disabled style="background:#f5f5f5;">
+    </div>
+    <div class="fg">
+      <label>昵称</label>
+      <input type="text" id="editUserNickname" placeholder="显示名称">
+    </div>
+    <div class="fg">
+      <label>角色</label>
+      <select id="editUserRole">
+        <option value="viewer">viewer (查看者)</option>
+        <option value="operator">operator (操作员)</option>
+        <option value="admin">admin (管理员)</option>
+      </select>
+    </div>
+    <div class="fg fl">
+      <label>权限 (逗号分隔)</label>
+      <input type="text" id="editUserPermissions" placeholder="如: slots:read,slots:write">
+    </div>
+  </div>
+  <div id="editUserMsg" style="margin-top:10px;font-size:13px;"></div>
+  <div class="mft">
+    <button type="button" class="btn btn-s" style="background:var(--bdr)" onclick="closeEditUserModal()">取消</button>
+    <button type="button" class="btn btn-s btn-g" onclick="doEditUser()">保存</button>
+  </div>
+</div>
 </div>
 
 <!-- Modal -->
@@ -118,6 +504,7 @@ tr:hover td{background:#f8f9fa;}
 <div class="fg"><label>使用状态</label><select id="fst"><option value="空闲">空闲</option><option value="已预订">已预订</option><option value="已确认">已确认</option><option value="已放货">已放货</option><option value="已完结">已完结</option></select></div>
 <div class="fg"><label>分配客户</label><input type="text" id="fcl" placeholder="客户/收货人名称"></div>
 <div class="fg"><label>操作归属</label><input type="text" id="fop" placeholder="跟单操作员"></div>
+<div class="fg"><label>销售价格 (USD)</label><input type="number" id="fsp" placeholder="0.00" step="0.01" min="0"></div>
 <div class="fg fl"><label>备注</label><textarea id="frm" placeholder="补充信息..."></textarea></div>
 </div>
 <div class="mft"><button type="button" class="btn btn-s" style="background:var(--bdr)" onclick="closeModal()">取消</button><button type="submit" class="btn btn-s btn-g">保存</button></div>
@@ -125,19 +512,398 @@ tr:hover td{background:#f8f9fa;}
 </div>
 </div>
 
+<!-- Order Modal -->
+<div class="ov" id="orderModal">
+<div class="md">
+  <h2 id="omt">新建订单</h2>
+  <input type="hidden" id="oId">
+  <div class="fg" style="max-height:60vh;overflow-y:auto;padding-right:8px;">
+    <div class="fg"><label>船司</label><input type="text" id="oCarrier" placeholder="MSC"></div>
+    <div class="fg"><label>SO号 *</label><input type="text" id="oSoNo" required placeholder="如 MEDUN7388390"></div>
+    <div class="fg"><label>约号</label><input type="text" id="oBookinNo" placeholder="BK2026001"></div>
+    <div class="fg"><label>起运港</label><input type="text" id="oPol" placeholder="NINGBO"></div>
+    <div class="fg"><label>目的港</label><input type="text" id="oPod" placeholder="NZAKL"></div>
+    <div class="fg"><label>柜型</label><input type="text" id="oContainerType" placeholder="40HQ"></div>
+    <div class="fg"><label>箱号封号</label><input type="text" id="oContainerSeal" placeholder="箱号/封号"></div>
+    <div class="fg"><label>分配客户</label><input type="text" id="oClient" placeholder="客户名称"></div>
+    <div class="fg"><label>销售价格(USD)</label><input type="number" step="0.01" id="oSalePrice" placeholder="0"></div>
+    <div class="fg fl"><label>备注</label><textarea id="oRemark" rows="2" placeholder="备注信息"></textarea></div>
+    <div class="fg"><label>截VGM</label><input type="date" id="oCutVgm"></div>
+    <div class="fg"><label>截SI</label><input type="date" id="oCutSi"></div>
+    <div class="fg"><label>拖车</label><input type="text" id="oTruck" placeholder="拖车信息"></div>
+    <div class="fg"><label>报关</label><input type="text" id="oCustoms" placeholder="报关信息"></div>
+    <div class="fg"><label>应付</label><input type="number" step="0.01" id="oPayable" placeholder="0"></div>
+    <div class="fg"><label>应收</label><input type="number" step="0.01" id="oReceivable" placeholder="0"></div>
+    <div class="fg"><label>放单</label><select id="oReleased"><option>否</option><option>是</option></select></div>
+  </div>
+  <div class="mft">
+    <button type="button" class="btn btn-s" style="background:var(--bdr)" onclick="closeOrderModal()">取消</button>
+    <button type="button" class="btn btn-s btn-g" onclick="saveOrderItem()">💾 保存</button>
+  </div>
+</div>
+</div>
+
 <script>
-const API='/api'; let allData=[]; let editId=null;
+// 使用配置的 API 地址，如果没有配置则使用相对路径（本地开发）
+const API = (typeof CONFIG !== 'undefined' && CONFIG.API_BASE_URL) ? CONFIG.API_BASE_URL + '/api' : '/api';
+let allData=[]; let editId=null;
+let currentUser = null;
+console.log('API endpoint:', API);
 
 const ST_MAP={'空闲':0,'已预订':1,'已确认':2,'已放货':3,'已完结':4};
 const ST_CLS=['bg-0','bg-1','bg-2','bg-3','bg-4'];
 const CHART_COLORS=['#2F5496','#28a745','#ffc107','#17a2b8','#fd7e14','#6f42c1','#e83e8c','#20c997','#fd7e14','#6610f2'];
 
+// ==================== Authentication Functions ====================
+
+async function checkAuth() {
+  try {
+    const resp = await fetch(API + '/auth/me', { credentials: 'include' });
+    if (resp.ok) {
+      currentUser = await resp.json();
+      document.getElementById('loginView').style.display = 'none';
+      document.getElementById('mainContent').style.display = 'block';
+      document.getElementById('userNickname').textContent = currentUser.nickname || currentUser.username;
+      document.getElementById('userRole').textContent = currentUser.role;
+      // Load main data
+      refreshData();
+    } else {
+      // Not authenticated, show login
+      document.getElementById('loginView').style.display = 'flex';
+      document.getElementById('mainContent').style.display = 'none';
+    }
+  } catch(e) {
+    console.error('Auth check failed:', e);
+    document.getElementById('loginView').style.display = 'flex';
+    document.getElementById('mainContent').style.display = 'none';
+  }
+}
+
+async function doLogin() {
+  const username = document.getElementById('loginUsername').value.trim();
+  const password = document.getElementById('loginPassword').value;
+  const msgEl = document.getElementById('loginMsg');
+  
+  if (!username || !password) {
+    msgEl.className = 'login-msg error';
+    msgEl.textContent = '请输入用户名和密码';
+    return;
+  }
+  
+  try {
+    const resp = await fetch(API + '/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+      body: JSON.stringify({ username, password })
+    });
+    
+    const data = await resp.json();
+    
+    if (resp.ok && data.ok) {
+      msgEl.className = 'login-msg success';
+      msgEl.textContent = '登录成功！';
+      setTimeout(() => checkAuth(), 500);
+    } else {
+      msgEl.className = 'login-msg error';
+      msgEl.textContent = data.error || '登录失败';
+    }
+  } catch(e) {
+    msgEl.className = 'login-msg error';
+    msgEl.textContent = '网络错误：' + e.message;
+  }
+}
+
+async function doLogout() {
+  try {
+    await fetch(API + '/auth/logout', { 
+      method: 'POST',
+      credentials: 'include' 
+    });
+  } catch(e) {
+    console.error('Logout error:', e);
+  }
+  currentUser = null;
+  document.getElementById('loginUsername').value = '';
+  document.getElementById('loginPassword').value = '';
+  document.getElementById('loginView').style.display = 'flex';
+  document.getElementById('mainContent').style.display = 'none';
+  document.getElementById('userDropdown').classList.remove('on');
+}
+
+function toggleUserMenu() {
+  const dropdown = document.getElementById('userDropdown');
+  dropdown.classList.toggle('on');
+}
+
+// Close dropdown when clicking outside
+document.addEventListener('click', function(e) {
+  const userMenu = document.getElementById('userMenu');
+  if (userMenu && !userMenu.contains(e.target)) {
+    document.getElementById('userDropdown').classList.remove('on');
+  }
+});
+
+// Allow Enter key to trigger login
+document.getElementById('loginPassword').addEventListener('keypress', function(e) {
+  if (e.key === 'Enter') doLogin();
+});
+
+// ==================== Change Password ====================
+
+function openChangePasswordModal() {
+  document.getElementById('userDropdown').classList.remove('on');
+  document.getElementById('changePwdModal').classList.add('on');
+  document.getElementById('oldPassword').value = '';
+  document.getElementById('newPassword').value = '';
+  document.getElementById('confirmPassword').value = '';
+  document.getElementById('changePwdMsg').textContent = '';
+}
+
+function closeChangePasswordModal() {
+  document.getElementById('changePwdModal').classList.remove('on');
+}
+
+async function doChangePassword() {
+  const oldPwd = document.getElementById('oldPassword').value;
+  const newPwd = document.getElementById('newPassword').value;
+  const confirmPwd = document.getElementById('confirmPassword').value;
+  const msgEl = document.getElementById('changePwdMsg');
+  
+  if (!oldPwd || !newPwd || !confirmPwd) {
+    msgEl.style.color = '#dc3545';
+    msgEl.textContent = '请填写所有字段';
+    return;
+  }
+  
+  if (newPwd.length < 6) {
+    msgEl.style.color = '#dc3545';
+    msgEl.textContent = '新密码至少6位';
+    return;
+  }
+  
+  if (newPwd !== confirmPwd) {
+    msgEl.style.color = '#dc3545';
+    msgEl.textContent = '两次输入的新密码不一致';
+    return;
+  }
+  
+  try {
+    const resp = await fetch(API + '/auth/change-password', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+      body: JSON.stringify({ old_password: oldPwd, new_password: newPwd })
+    });
+    
+    const data = await resp.json();
+    
+    if (resp.ok && data.ok) {
+      msgEl.style.color = '#28a745';
+      msgEl.textContent = '密码修改成功！';
+      setTimeout(closeChangePasswordModal, 1500);
+    } else {
+      msgEl.style.color = '#dc3545';
+      msgEl.textContent = data.error || '修改失败';
+    }
+  } catch(e) {
+    msgEl.style.color = '#dc3545';
+    msgEl.textContent = '网络错误：' + e.message;
+  }
+}
+
+// ==================== User Management ====================
+
+async function openUserMgmtModal() {
+  document.getElementById('userDropdown').classList.remove('on');
+  document.getElementById('userMgmtModal').classList.add('on');
+  await loadUsers();
+}
+
+function closeUserMgmtModal() {
+  document.getElementById('userMgmtModal').classList.remove('on');
+}
+
+function openAddUserForm() {
+  document.getElementById('addUserForm').style.display = 'block';
+  document.getElementById('newUserUsername').value = '';
+  document.getElementById('newUserPassword').value = '';
+  document.getElementById('newUserNickname').value = '';
+  document.getElementById('newUserRole').value = 'operator';
+  document.getElementById('newUserPermissions').value = '';
+  document.getElementById('addUserMsg').textContent = '';
+}
+
+function cancelAddUser() {
+  document.getElementById('addUserForm').style.display = 'none';
+}
+
+async function loadUsers() {
+  try {
+    const resp = await fetch(API + '/users', { credentials: 'include' });
+    const data = await resp.json();
+    
+    if (!resp.ok) {
+      document.getElementById('userTableContainer').innerHTML = '<p style="color:red;">加载失败：' + (data.error || '未知错误') + '</p>';
+      return;
+    }
+    
+    let html = '<table class="user-table"><thead><tr><th>ID</th><th>用户名</th><th>昵称</th><th>角色</th><th>权限</th><th>创建时间</th><th>操作</th></tr></thead><tbody>';
+    
+    data.forEach(user => {
+      html += `<tr>
+        <td>${user.id}</td>
+        <td>${esc(user.username)}</td>
+        <td>${esc(user.nickname || '')}</td>
+        <td><span class="bg ${user.role === 'admin' ? 'bg-0' : user.role === 'operator' ? 'bg-1' : 'bg-4'}">${user.role}</span></td>
+        <td>${esc(user.permissions || '-')}</td>
+        <td>${user.created_at ? fmtDate(user.created_at) : '-'}</td>
+        <td class="act">
+          <button class="btn btn-s btn-p" onclick="openEditUser(${user.id})">编辑</button>
+          ${user.id !== currentUser.id ? `<button class="btn btn-s btn-r" onclick="deleteUser(${user.id}, '${esc(user.username)}')">删除</button>` : ''}
+        </td>
+      </tr>`;
+    });
+    
+    html += '</tbody></table>';
+    document.getElementById('userTableContainer').innerHTML = html;
+  } catch(e) {
+    document.getElementById('userTableContainer').innerHTML = '<p style="color:red;">加载失败：' + e.message + '</p>';
+  }
+}
+
+async function doAddUser() {
+  const username = document.getElementById('newUserUsername').value.trim();
+  const password = document.getElementById('newUserPassword').value;
+  const nickname = document.getElementById('newUserNickname').value.trim();
+  const role = document.getElementById('newUserRole').value;
+  const permissions = document.getElementById('newUserPermissions').value.trim();
+  const msgEl = document.getElementById('addUserMsg');
+  
+  if (!username || !password) {
+    msgEl.style.color = '#dc3545';
+    msgEl.textContent = '用户名和密码为必填项';
+    return;
+  }
+  
+  try {
+    const resp = await fetch(API + '/users', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+      body: JSON.stringify({ username, password, nickname, role, permissions })
+    });
+    
+    const data = await resp.json();
+    
+    if (resp.ok && data.ok) {
+      msgEl.style.color = '#28a745';
+      msgEl.textContent = '添加成功！';
+      document.getElementById('addUserForm').style.display = 'none';
+      await loadUsers();
+    } else {
+      msgEl.style.color = '#dc3545';
+      msgEl.textContent = data.error || '添加失败';
+    }
+  } catch(e) {
+    msgEl.style.color = '#dc3545';
+    msgEl.textContent = '网络错误：' + e.message;
+  }
+}
+
+async function openEditUser(userId) {
+  try {
+    const resp = await fetch(API + '/users', { credentials: 'include' });
+    const data = await resp.json();
+    const user = data.find(u => u.id === userId);
+    
+    if (!user) {
+      alert('用户不存在');
+      return;
+    }
+    
+    document.getElementById('editUserId').value = user.id;
+    document.getElementById('editUserUsername').value = user.username;
+    document.getElementById('editUserNickname').value = user.nickname || '';
+    document.getElementById('editUserRole').value = user.role;
+    document.getElementById('editUserPermissions').value = user.permissions || '';
+    document.getElementById('editUserMsg').textContent = '';
+    document.getElementById('editUserModal').classList.add('on');
+  } catch(e) {
+    alert('加载用户失败：' + e.message);
+  }
+}
+
+function closeEditUserModal() {
+  document.getElementById('editUserModal').classList.remove('on');
+}
+
+async function doEditUser() {
+  const userId = document.getElementById('editUserId').value;
+  const nickname = document.getElementById('editUserNickname').value.trim();
+  const role = document.getElementById('editUserRole').value;
+  const permissions = document.getElementById('editUserPermissions').value.trim();
+  const msgEl = document.getElementById('editUserMsg');
+  
+  try {
+    const resp = await fetch(API + '/users/' + userId, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+      body: JSON.stringify({ nickname, role, permissions })
+    });
+    
+    const data = await resp.json();
+    
+    if (resp.ok && data.ok) {
+      msgEl.style.color = '#28a745';
+      msgEl.textContent = '保存成功！';
+      setTimeout(async () => {
+        closeEditUserModal();
+        await loadUsers();
+      }, 1000);
+    } else {
+      msgEl.style.color = '#dc3545';
+      msgEl.textContent = data.error || '保存失败';
+    }
+  } catch(e) {
+    msgEl.style.color = '#dc3545';
+    msgEl.textContent = '网络错误：' + e.message;
+  }
+}
+
+async function deleteUser(userId, username) {
+  if (!confirm(`确定要删除用户 "${username}" 吗？此操作不可恢复！`)) return;
+  
+  try {
+    const resp = await fetch(API + '/users/' + userId, {
+      method: 'DELETE',
+      credentials: 'include'
+    });
+    
+    const data = await resp.json();
+    
+    if (resp.ok && data.ok) {
+      alert('删除成功！');
+      await loadUsers();
+    } else {
+      alert('删除失败：' + (data.error || '未知错误'));
+    }
+  } catch(e) {
+    alert('删除失败：' + e.message);
+  }
+}
+
+// ==================== Main App Functions ====================
+
 async function loadStats(){
-  const r=await fetch(API+'/stats'); const d=await r.json();
+  const r=await fetch(API+'/stats', { credentials: 'include' }); const d=await r.json();
   const c={total:'#2F5496','空闲':'#28a745','已预订':'#ffc107','已确认':'#17a2b8','已放货':'#fd7e14','已完结':'#6c757d'};
   let h=`<div class="sc"><div class="sn">${d.total}</div><div class="sl">总舱位</div></div>`;
   for(const s of['空闲','已预订','已确认','已放货','已完结']) h+=`<div class="sc"><div class="sn" style="color:${c[s]}">${d.by_status[s]||0}</div><div class="sl">${s}</div></div>`;
   document.getElementById('statsRow').innerHTML=h;
+  await loadWeekOptions();
+  await loadTeuStats();
 
   // charts
   renderChart('cs',d.by_status);
@@ -147,12 +913,13 @@ async function loadStats(){
 
   // populate filter dropdowns
   const carriers=new Set(); const ops=new Set();
-  (await fetch(API+'/slots')).json().then(arr=>{arr.forEach(s=>{carriers.add(s.carrier);ops.add(s.operator||'');});
-    const fc=document.getElementById('fc'); Array.from(fc.options).forEach(o=>{if(o.value&&o.value!=='全部船公司') o.remove()});
-    carriers.forEach(v=>{if(v) fc.appendChild(new Option(v,v))});
-    const fo=document.getElementById('fo'); Array.from(fo.options).forEach(o=>{if(o.value&&o.value!=='全部操作') o.remove()});
-    ops.forEach(v=>{if(v) fo.appendChild(new Option(v,v))});
-  });
+  const slotsResp = await fetch(API+'/slots', { credentials: 'include' });
+  const arr = await slotsResp.json();
+  arr.forEach(s=>{carriers.add(s.carrier);ops.add(s.operator||'');});
+  const fc=document.getElementById('fc'); Array.from(fc.options).forEach(o=>{if(o.value&&o.value!=='全部船公司') o.remove()});
+  carriers.forEach(v=>{if(v) fc.appendChild(new Option(v,v))});
+  const fo=document.getElementById('fo'); Array.from(fo.options).forEach(o=>{if(o.value&&o.value!=='全部操作') o.remove()});
+  ops.forEach(v=>{if(v) fo.appendChild(new Option(v,v))});
 }
 
 function renderChart(id,data){
@@ -163,14 +930,47 @@ function renderChart(id,data){
   el.innerHTML=entries.map(([k,v],i)=>`<div class="cbw"><div class="cb" style="height:${v/max*140}px;background:${CHART_COLORS[i%CHART_COLORS.length]}"></div><div class="cbv">${v}</div><div class="cbl" title="${k}">${k}</div></div>`).join('');
 }
 
+async function loadWeekOptions(){
+  try{
+    const r=await fetch(API+'/stats/weeks', { credentials: 'include' });
+    const weeks=await r.json();
+    const sel=document.getElementById('fWeek');
+    const cur=sel.value;
+    sel.innerHTML='<option value="">全部周</option>';
+    weeks.forEach(w=>{const o=document.createElement('option');o.value=w;o.textContent=w;sel.appendChild(o);});
+    if(cur && weeks.includes(cur)) sel.value=cur;
+  }catch(e){console.warn('加载周选项失败',e);}
+}
+
+async function loadTeuStats(){
+  const week=document.getElementById('fWeek').value;
+  try{
+    const r=await fetch(API+'/stats/teu'+(week?'?week='+encodeURIComponent(week):''), { credentials: 'include' });
+    const d=await r.json();
+    const bsa=d.stats['BSA']||{};
+    const ltr=d.stats['LTR']||{};
+    const nor=d.stats['NOR']||{};
+    document.getElementById('teuBsa').textContent=bsa.teu||0;
+    document.getElementById('teuLtr').textContent=ltr.teu||0;
+    document.getElementById('teuNor').textContent=nor.teu||0;
+    document.getElementById('teuTotal').textContent=d.total_teu||0;
+  }catch(e){console.warn('加载TEU统计失败',e);}
+}
+
 async function loadSlots(){
   const p=new URLSearchParams();
-  const fs=document.getElementById('fs').value; if(p) p.append('status',fs);
+  const fw=document.getElementById('fWeek').value; if(fw) p.append('week',fw);
+  const fs=document.getElementById('fs').value; if(fs) p.append('status',fs);
   const fc=document.getElementById('fc').value; if(fc) p.append('carrier',fc);
   const fo=document.getElementById('fo').value; if(fo) p.append('operator',fo);
   const fq=document.getElementById('fq').value; if(fq) p.append('q',fq);
-  const r=await fetch(API+'/slots?'+p.toString()); allData=await r.json();
+  const etdStart=document.getElementById('fEtdStart').value; if(etdStart) p.append('etd_start',etdStart);
+  const etdEnd=document.getElementById('fEtdEnd').value; if(etdEnd) p.append('etd_end',etdEnd);
+  const r=await fetch(API+'/slots?'+p.toString(), { credentials: 'include' }); allData=await r.json();
+  // 按ETD升序排序，相同ETD按约号归类
+  allData.sort((a,b)=>{if(!a.etd)return 1;if(!b.etd)return -1;const c=a.etd.localeCompare(b.etd);if(c!==0)return c;return (a.booking_ref||'').localeCompare(b.booking_ref||'');});
   renderTable();
+  loadTeuStats();  // 周筛选变化时同步更新 TEU 统计
 }
 
 function renderTable(){
@@ -182,15 +982,20 @@ function renderTable(){
     return `<tr>
       <td>${s.id}</td><td>${esc(s.carrier)}</td><td style="font-weight:600">${esc(s.so_no)}</td><td>${esc(s.booking_ref)}</td>
       <td>${esc(s.loading_port)}</td><td>${esc(s.destination_port)}</td><td><strong>${esc(s.container_type)}</strong></td>
-      <td>${s.quantity}</td><td>${s.etd||''}</td><td>${s.eta||''}</td>
+      <td>${s.quantity}</td><td>${fmtDate(s.etd)}</td><td>${fmtDate(s.eta)}</td>
+      <td style="background:#fff3e0;color:#e65100;font-weight:600;text-align:center">${s.week||'-'}</td>
       <td><span class="bg ${ST_CLS[si]||''}">${esc(s.status)}</span></td>
-      <td>${esc(s.client)}</td><td>${esc(s.operator)}</td><td>${esc(s.remark||'')}</td>
+      <td>${esc(s.client)}</td><td>${esc(s.operator)}</td><td style="color:#28a745;font-weight:600">${s.sale_price ? '$'+parseFloat(s.sale_price).toFixed(2) : '-'}</td><td>${esc(s.remark||'')}</td>
       <td class="act"><button class="btn btn-s btn-p" onclick="editSlot(${s.id})">编辑</button><button class="btn btn-s btn-r" onclick="delSlot(${s.id})">删除</button></td>
     </tr>`;
   }).join('');
 }
 
 function esc(s){if(!s)return '';return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+function fmtDate(s){if(!s)return '';const m=String(s).match(/(\d{4}-\d{2}-\d{2})/);return m?m[1]:s;}
+
+function extractDate(s){if(!s)return '';const m=String(s).match(/(\d{4}-\d{2}-\d{2})/);return m?m[1]:'';}
 
 function openModal(){editId=null;document.getElementById('mt').textContent='新增舱位';document.getElementById('fm').reset();document.getElementById('fid').value='';document.getElementById('modal').classList.add('on');}
 
@@ -207,13 +1012,69 @@ async function editSlot(id){
   document.getElementById('fdp').value=s.destination_port||'';
   document.getElementById('fct').value=s.container_type||'';
   document.getElementById('fqy').value=s.quantity||1;
-  document.getElementById('fetd').value=s.etd||'';
-  document.getElementById('feta').value=s.eta||'';
+  document.getElementById('fetd').value=extractDate(s.etd);
+  document.getElementById('feta').value=extractDate(s.eta);
   document.getElementById('fst').value=s.status||'空闲';
   document.getElementById('fcl').value=s.client||'';
   document.getElementById('fop').value=s.operator||'';
+  document.getElementById('fsp').value=s.sale_price||'';
   document.getElementById('frm').value=s.remark||'';
   document.getElementById('modal').classList.add('on');
+}
+
+// ==================== SO 识别功能 ====================
+async function recognizeSO(file){
+  console.log('[SO识别] 开始识别，文件名：', file.name, '，大小：', (file.size/1024).toFixed(1), 'KB');
+  if(!file){alert('请选择文件');return;}
+  const statusEl=document.getElementById('soRecognizeStatus');
+  statusEl.innerHTML='<span style="color:#4a90d9">⏳ 正在识别中，请稍候...</span>';
+  
+  const fd=new FormData();
+  fd.append('file',file);
+  
+  try{
+    console.log('[SO识别] 发送请求到 /api/recognize-so...');
+    const resp=await fetch('/api/recognize-so',{method:'POST',body:fd,signal:AbortSignal.timeout(120000), credentials: 'include'});
+    console.log('[SO识别] 响应状态：', resp.status, resp.statusText);
+    const result=await resp.json();
+    console.log('[SO识别] 响应数据：', result);
+    
+    if(!resp.ok){
+      statusEl.innerHTML='<span style="color:red">❌ '+(result.error||'识别失败')+'</span>';
+      alert('识别失败: '+(result.error||'未知错误'));
+      return;
+    }
+    
+    const d=result.data;
+    
+    // 填充表单
+    if(d.carrier){
+      const sel=document.getElementById('fcarr');
+      if([...sel.options].some(o=>o.value===d.carrier)){sel.value=d.carrier;}
+      else{sel.value='其他';}
+    }
+    if(d.so_no) document.getElementById('fso').value=d.so_no;
+    if(d.booking_ref) document.getElementById('fbk').value=d.booking_ref;
+    if(d.loading_port) document.getElementById('flp').value=d.loading_port;
+    if(d.destination_port) document.getElementById('fdp').value=d.destination_port;
+    if(d.container_type){const s=document.getElementById('fct');if([...s.options].some(o=>o.value===d.container_type))s.value=d.container_type;}
+    if(d.quantity) document.getElementById('fqy').value=d.quantity;
+    if(d.etd) document.getElementById('fetd').value=extractDate(d.etd);
+    if(d.eta) document.getElementById('feta').value=extractDate(d.eta);
+    
+    statusEl.innerHTML='<span style="color:green">✅ 识别成功！已自动填充，请核对后保存</span>';
+    
+    // 自动打开新增舱位弹窗（不重置表单，保持已填充数据）
+    editId = null;
+    document.getElementById('mt').textContent = '新增舱位 (SO识别)';
+    document.getElementById('modal').classList.add('on');
+    
+    // 5秒后清除状态
+    setTimeout(()=>{statusEl.innerHTML='';},5000);
+    
+  }catch(err){
+    statusEl.innerHTML='<span style="color:red">❌ 请求失败: '+err.message+'</span>';
+  }
 }
 
 async function saveSlot(e){
@@ -231,19 +1092,20 @@ async function saveSlot(e){
     status:document.getElementById('fst').value,
     client:document.getElementById('fcl').value.trim(),
     operator:document.getElementById('fop').value.trim(),
+    sale_price:document.getElementById('fsp').value?parseFloat(document.getElementById('fsp').value):'',
     remark:document.getElementById('frm').value.trim()
   };
   if(editId){
-    await fetch(API+'/slots/'+editId,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+    await fetch(API+'/slots/'+editId,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload), credentials: 'include'});
   }else{
-    await fetch(API+'/slots',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+    await fetch(API+'/slots',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload), credentials: 'include'});
   }
   closeModal(); refreshData();
 }
 
 async function delSlot(id){
   if(!confirm('确定删除此条舱位记录？'))return;
-  await fetch(API+'/slots/'+id,{method:'DELETE'});
+  await fetch(API+'/slots/'+id,{method:'DELETE', credentials: 'include'});
   refreshData();
 }
 
@@ -251,23 +1113,382 @@ function swTab(t){
   document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));
   event.target.classList.add('on');
   document.getElementById('listView').style.display=t==='list'?'block':'none';
+  document.getElementById('myOrdersView').style.display=t==='myorders'?'block':'none';
   document.getElementById('chartView').style.display=t==='chart'?'block':'none';
+  document.getElementById('trashView').style.display=t==='trash'?'block':'none';
+  document.getElementById('filterBar').style.display=t==='list'?'flex':'none';
   if(t==='chart') loadStats();
+  if(t==='trash') loadTrash();
+  if(t==='myorders') loadMyOrders();
 }
 
 function exportData(){
   // CSV export
-  const headers=['ID','船公司','SO号','约号','起运港','目的港','柜型','数量','ETD','ETA','使用状态','分配客户','操作归属','备注'];
+  const headers=['ID','船公司','SO号','约号','起运港','目的港','柜型','数量','ETD','ETA','使用状态','分配客户','操作归属','销售价格(USD)','备注'];
   const rows=[headers.join(',')];
-  allData.forEach(s=>{rows.push([s.id,s.carrier,s.so_no,s.booking_ref,s.loading_port,s.destination_port,s.container_type,s.quantity,s.etd,s.eta,s.status,s.client,s.operator,s.remark||''].map(v=>`"${(v||'').replace(/"/g,'""')}"`).join(','));});
+  allData.forEach(s=>{rows.push([s.id,s.carrier,s.so_no,s.booking_ref,s.loading_port,s.destination_port,s.container_type,s.quantity,s.etd,s.eta,s.status,s.client,s.operator,s.sale_price||'',s.remark||''].map(v=>`"${(v||'').replace(/"/g,'""')}"`).join(','));});
   const BOM='\uFEFF'; const blob=new Blob([BOM+rows.join('\n')],{type:'text/csv;charset=utf-8'});
   const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=`舱位导出_${new Date().toISOString().slice(0,10)}.csv`; a.click();
 }
 
 async function refreshData(){await Promise.all([loadStats(),loadSlots()]);}
 
-// init
-refreshData();
+// init - check authentication first
+checkAuth();
+
+// ========== 回收站功能 ==========
+async function loadTrash(){
+  try {
+    const resp = await fetch(API + '/trash', { credentials: 'include' });
+    const result = await resp.json();
+    if(!result.ok) return;
+    const list = document.getElementById('tbTrash');
+    if(!list) return;
+    
+    if(result.data.length === 0){
+      list.innerHTML = '<tr><td colspan="13" style="text-align:center;color:#999;padding:40px;">🗑️ 回收站为空</td></tr>';
+      return;
+    }
+    
+    let html = '';
+    result.data.forEach(item => {
+      html += `<tr>
+        <td>${item.id}</td>
+        <td>${item.carrier || ''}</td>
+        <td>${item.so_no || ''}</td>
+        <td>${item.booking_ref || ''}</td>
+        <td>${item.loading_port || ''}</td>
+        <td>${item.destination_port || ''}</td>
+        <td>${item.container_type || ''}</td>
+        <td>${item.quantity || ''}</td>
+        <td>${item.etd || ''}</td>
+        <td>${item.status || ''}</td>
+        <td>${item.client || ''}</td>
+        <td>${item.deleted_at || ''}</td>
+        <td><button class="btn-sm btn-success" onclick="restoreTrash(${item.id})">恢复</button> <button class="btn-sm btn-danger" onclick="permanentDelete(${item.id})">彻底删除</button></td>
+      </tr>`;
+    });
+    list.innerHTML = html;
+  } catch(e) {
+    console.error('加载回收站失败:', e);
+  }
+}
+
+async function restoreTrash(id){
+  try {
+    const resp = await fetch(API + '/trash/' + id + '/restore', { method: 'POST', credentials: 'include' });
+    const result = await resp.json();
+    if(result.ok){
+      alert('✅ 恢复成功');
+      loadTrash();
+      loadSlots(); // 刷新主列表
+    } else {
+      alert('❌ 恢复失败：' + (result.error || '未知错误'));
+    }
+  } catch(e) {
+    alert('❌ 恢复失败：' + e.message);
+  }
+}
+
+async function permanentDelete(id){
+  if(!confirm('确定要彻底删除这条舱位吗？删除后无法恢复！')) return;
+  try {
+    const resp = await fetch(API + '/trash/' + id + '/permanent', { method: 'DELETE', credentials: 'include' });
+    const result = await resp.json();
+    if(result.ok){
+      alert('✅ 彻底删除成功');
+      loadTrash();
+    } else {
+      alert('❌ 删除失败：' + (result.error || '未知错误'));
+    }
+  } catch(e) {
+    alert('❌ 删除失败：' + e.message);
+  }
+}
+
+async function clearTrash(){
+  if(!confirm('确定要清空回收站吗？所有数据将被永久删除！')) return;
+  try {
+    const resp = await fetch(API + '/trash/clear', { method: 'DELETE', credentials: 'include' });
+    const result = await resp.json();
+    if(result.ok){
+      alert('✅ 回收站已清空');
+      loadTrash();
+    } else {
+      alert('❌ 清空失败：' + (result.error || '未知错误'));
+    }
+  } catch(e) {
+    alert('❌ 清空失败：' + e.message);
+  }
+}
+// ========= SO 识别事件绑定 =========
+// 方法 1：DOMContentLoaded 事件（标准方法）
+document.addEventListener('DOMContentLoaded', function() {
+  bindSOFileInput();
+});
+
+// 方法 2：立即执行（备用方案，防止 DOMContentLoaded 已触发）
+if (document.readyState !== 'loading') {
+  bindSOFileInput();
+}
+
+function bindSOFileInput() {
+  const soFileInput = document.getElementById('soFileInput');
+  if (soFileInput && !soFileInput.dataset.bound) {
+    soFileInput.addEventListener('change', function(e) {
+      console.log('[SO识别] 文件选择变化：', this.files[0]?.name);
+      if (this.files && this.files[0]) {
+        recognizeSO(this.files[0]);
+      }
+    });
+    soFileInput.dataset.bound = 'true';
+    console.log('[SO识别] 事件绑定成功');
+  }
+}
+
+// ========== 回收站功能结束 ==========
+
+// ========== 我的订单功能 ==========
+let moPage = 1;
+let moEditingId = null;
+
+async function loadMyOrders(page) {
+  if (!currentUser) return;
+  page = page || 1;
+  moPage = page;
+  const params = new URLSearchParams({scope:'own', page:page, per_page:15});
+  const search = document.getElementById('moSearch').value.trim();
+  if (search) params.set('job_no', search);
+  const status = document.getElementById('moStatus').value;
+  if (status) params.set('status', status);
+  const moOp = document.getElementById('moOperator').value;
+  if (moOp) params.set('operator', moOp);
+  try {
+    const r = await fetch(API + '/orders?' + params, {credentials:'include'});
+    if (!r.ok) { console.error('loadMyOrders failed', r.status); return; }
+    const d = await r.json();
+    renderMyOrders(d.data || []);
+    renderMoPager(d.total||0, page, d.per_page||15);
+    updateMoOperatorOptions(d.data || []);
+  } catch(e) { console.error('loadMyOrders error:', e); }
+}
+
+function renderMyOrders(orders) {
+  const tb = document.getElementById('moTb');
+  if (!tb) return;
+  if (!orders.length) { tb.innerHTML='<tr><td colspan="19" style="text-align:center;color:#999;padding:40px;">📦 暂无订单，点击「新建订单」添加</td></tr>'; return; }
+  tb.innerHTML = orders.map(o => {
+    return `<tr>
+      <td>${o.id}</td>
+      <td>${esc(o.carrier||'')}</td>
+      <td><strong>${esc(o.so_no||'')}</strong></td>
+      <td>${esc(o.booking_no||'')}</td>
+      <td>${esc(o.port_loading||'')}</td>
+      <td>${esc(o.port_discharge||'')}</td>
+      <td>${esc(o.container_type||'')}</td>
+      <td>${esc(o.container_seal||'')}</td>
+      <td>${esc(o.client||'')}</td>
+      <td>${o.sale_price||''}</td>
+      <td style="max-width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${esc(o.remark||'')}">${esc(o.remark||'')}</td>
+      <td>${esc((o.cut_vgm||'').slice(0,10))}</td>
+      <td>${esc((o.cut_si||'').slice(0,10))}</td>
+      <td>${esc(o.truck||'')}</td>
+      <td>${esc(o.customs||'')}</td>
+      <td>${o.payable||''}</td>
+      <td>${o.receivable||''}</td>
+      <td>${o.released==='是'?'✅':'❌'}</td>
+      <td class="act">
+        <button class="btn btn-s btn-p" onclick="editOrderItem(${o.id})" title="编辑">✏️</button>
+        <button class="btn btn-s btn-r" onclick="deleteOrderItem(${o.id})" title="删除">🗑️</button>
+      </td>
+    </tr>`;
+  }).join('');
+}
+
+function renderMoPager(total, page, perPage) {
+  const el = document.getElementById('moPager');
+  if (!el) return;
+  const pages = Math.ceil(total/perPage)||1;
+  el.innerHTML = `<span>共 ${total} 条，第 ${page}/${pages} 页</span><div style="display:flex;gap:6px;">${page>1?`<button class="btn btn-s btn-p" onclick="loadMyOrders(${page-1})">← 上一页</button>`:''}${page<pages?`<button class="btn btn-s btn-p" onclick="loadMyOrders(${page+1})">下一页 →</button>`:''}</div>`;
+}
+
+function updateMoOperatorOptions(orders) {
+  const sel = document.getElementById('moOperator');
+  if (!sel) return;
+  const curVal = sel.value;
+  // Collect unique operators from current page data + keep existing options
+  const ops = new Set();
+  for (let i=0; i<sel.options.length; i++) { if(sel.options[i].value) ops.add(sel.options[i].value); }
+  (orders||[]).forEach(o => { if(o.operator) ops.add(o.operator); });
+  // Also load from all orders via a separate fetch (first load only)
+  if (!sel.dataset.loaded) {
+    sel.dataset.loaded = '1';
+    fetch(API+'/orders?scope=all&per_page=200', {credentials:'include'})
+      .then(r=>r.json())
+      .then(d => {
+        (d.data||[]).forEach(o => { if(o.operator) ops.add(o.operator); });
+        rebuildOpSelect(sel, ops, curVal);
+      })
+      .catch(()=> rebuildOpSelect(sel, ops, curVal));
+  } else {
+    rebuildOpSelect(sel, ops, curVal);
+  }
+}
+
+function rebuildOpSelect(sel, ops, curVal) {
+  sel.innerHTML = '<option value="">全部操作</option>';
+  Array.from(ops).sort().forEach(op => {
+    const opt = document.createElement('option');
+    opt.value = op; opt.textContent = op;
+    if (op === curVal) opt.selected = true;
+    sel.appendChild(opt);
+  });
+}
+
+function esc(s) { if(!s) return ''; const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+
+function openOrderModal() {
+  moEditingId = null;
+  document.getElementById('omt').textContent = '新建订单';
+  ['oId','oCarrier','oSoNo','oBookinNo','oPol','oPod','oContainerType','oContainerSeal','oClient','oSalePrice','oRemark','oCutVgm','oCutSi','oTruck','oCustoms','oPayable','oReceivable','oReleased'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  document.getElementById('oReleased').value='否';
+  document.getElementById('orderModal').classList.add('on');
+}
+
+async function editOrderItem(id) {
+  try {
+    const r = await fetch(API+'/orders/'+id, {credentials:'include'});
+    if(!r.ok) { alert('加载失败'); return; }
+    const o = await r.json();
+    moEditingId = id;
+    document.getElementById('omt').textContent = '编辑订单';
+    document.getElementById('oId').value = o.id;
+    document.getElementById('oCarrier').value = o.carrier||'';
+    document.getElementById('oSoNo').value = o.so_no||'';
+    document.getElementById('oBookinNo').value = o.booking_no||'';
+    document.getElementById('oPol').value = o.port_loading||'';
+    document.getElementById('oPod').value = o.port_discharge||'';
+    document.getElementById('oContainerType').value = o.container_type||'';
+    document.getElementById('oContainerSeal').value = o.container_seal||'';
+    document.getElementById('oClient').value = o.client||'';
+    document.getElementById('oSalePrice').value = o.sale_price||'';
+    document.getElementById('oRemark').value = o.remark||'';
+    document.getElementById('oCutVgm').value = (o.cut_vgm||'').slice(0,10);
+    document.getElementById('oCutSi').value = (o.cut_si||'').slice(0,10);
+    document.getElementById('oTruck').value = o.truck||'';
+    document.getElementById('oCustoms').value = o.customs||'';
+    document.getElementById('oPayable').value = o.payable||'';
+    document.getElementById('oReceivable').value = o.receivable||'';
+    document.getElementById('oReleased').value = o.released||'否';
+    document.getElementById('orderModal').classList.add('on');
+  } catch(e) { alert('加载失败: '+e.message); }
+}
+
+function closeOrderModal() {
+  document.getElementById('orderModal').classList.remove('on');
+  moEditingId = null;
+}
+
+async function saveOrderItem() {
+  const soNo = document.getElementById('oSoNo').value.trim();
+  if (!soNo) { alert('请输入SO号'); return; }
+  const data = {
+    so_no: soNo,
+    carrier: document.getElementById('oCarrier').value.trim(),
+    booking_no: document.getElementById('oBookinNo').value.trim(),
+    port_loading: document.getElementById('oPol').value.trim(),
+    port_discharge: document.getElementById('oPod').value.trim(),
+    container_type: document.getElementById('oContainerType').value.trim(),
+    container_seal: document.getElementById('oContainerSeal').value.trim(),
+    client: document.getElementById('oClient').value.trim(),
+    sale_price: parseFloat(document.getElementById('oSalePrice').value)||0,
+    remark: document.getElementById('oRemark').value.trim(),
+    cut_vgm: document.getElementById('oCutVgm').value || null,
+    cut_si: document.getElementById('oCutSi').value || null,
+    truck: document.getElementById('oTruck').value.trim(),
+    customs: document.getElementById('oCustoms').value.trim(),
+    payable: parseFloat(document.getElementById('oPayable').value)||0,
+    receivable: parseFloat(document.getElementById('oReceivable').value)||0,
+    released: document.getElementById('oReleased').value
+  };
+  try {
+    let r;
+    if (moEditingId) {
+      r = await fetch(API+'/orders/'+moEditingId, {method:'PUT',headers:{'Content-Type':'application/json'},credentials:'include',body:JSON.stringify(data)});
+    } else {
+      r = await fetch(API+'/orders', {method:'POST',headers:{'Content-Type':'application/json'},credentials:'include',body:JSON.stringify(data)});
+    }
+    if (r.ok) {
+      closeOrderModal();
+      loadMyOrders(moPage);
+    } else {
+      const d = await r.json();
+      alert('保存失败: '+(d.error||'未知错误'));
+    }
+  } catch(e) { alert('保存失败: '+e.message); }
+}
+
+async function deleteOrderItem(id) {
+  if (!confirm('确定删除此订单？')) return;
+  try {
+    const r = await fetch(API+'/orders/'+id, {method:'DELETE',credentials:'include'});
+    if (r.ok) { loadMyOrders(moPage); }
+    else { const d=await r.json(); alert('删除失败: '+(d.error||'未知错误')); }
+  } catch(e) { alert('删除失败: '+e.message); }
+}
+
+async function exportOrders() {
+  try {
+    const params = new URLSearchParams();
+    const search = document.getElementById('moSearch').value.trim();
+    if (search) params.set('so_no', search);
+    const r = await fetch(API + '/orders/export?' + params, {credentials:'include'});
+    if (!r.ok) { alert('导出失败'); return; }
+    const blob = await r.blob();
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'orders_export_' + new Date().toISOString().slice(0,10) + '.xlsx';
+    a.click();
+    window.URL.revokeObjectURL(url);
+  } catch(e) { alert('导出失败: '+e.message); }
+}
+
+async function importOrders(file) {
+  if (!file) return;
+  const formData = new FormData();
+  formData.append('file', file);
+  try {
+    const r = await fetch(API + '/orders/import', {method:'POST',credentials:'include',body:formData});
+    const d = await r.json();
+    if (r.ok) {
+      alert('导入成功！新增 '+d.inserted+' 条，更新 '+d.updated+' 条');
+      loadMyOrders(moPage);
+    } else {
+      alert('导入失败: '+(d.error||'未知错误'));
+    }
+  } catch(e) { alert('导入失败: '+e.message); }
+  document.getElementById('orderImportFile').value = '';
+}
+
+async function downloadOrderTemplate() {
+  try {
+    const r = await fetch(API + '/orders/template', {credentials:'include'});
+    if (!r.ok) { alert('下载模板失败'); return; }
+    const blob = await r.blob();
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'orders_template.xlsx';
+    a.click();
+    window.URL.revokeObjectURL(url);
+  } catch(e) { alert('下载模板失败: '+e.message); }
+}
+
+// ========== 我的订单功能结束 ==========
+
 </script>
+
+<script src="config.js"></script>
 </body>
 </html>

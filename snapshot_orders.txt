@@ -1,0 +1,1406 @@
+﻿{
+  "ok": true,
+  "command": "run",
+  "data": {
+    "browser_command": "snapshot -i",
+    "result": {
+      "success": true,
+      "data": {
+        "origin": "https://awsa2.cargoplus.cn/home/index?r=function%20random()%20{%20[native%20code]%20}",
+        "refs": {
+          "e1": {
+            "name": "",
+            "role": "generic"
+          },
+          "e10": {
+            "name": " 海运业务",
+            "role": "link"
+          },
+          "e100": {
+            "name": "PO No.",
+            "role": "option"
+          },
+          "e101": {
+            "name": "发票抬头",
+            "role": "option"
+          },
+          "e102": {
+            "name": "进仓编号",
+            "role": "option"
+          },
+          "e103": {
+            "name": "相关公司",
+            "role": "option"
+          },
+          "e104": {
+            "name": "委托方",
+            "role": "option"
+          },
+          "e105": {
+            "name": "订舱注意事项",
+            "role": "option"
+          },
+          "e106": {
+            "name": "合并MBL",
+            "role": "option"
+          },
+          "e107": {
+            "name": "包机/包列号",
+            "role": "option"
+          },
+          "e108": {
+            "name": "拖车批次号",
+            "role": "option"
+          },
+          "e109": {
+            "name": "客户简称",
+            "role": "option"
+          },
+          "e11": {
+            "name": "",
+            "role": "generic"
+          },
+          "e110": {
+            "name": "报关备注",
+            "role": "option"
+          },
+          "e111": {
+            "name": "",
+            "role": "option"
+          },
+          "e112": {
+            "name": "ETA",
+            "role": "option"
+          },
+          "e113": {
+            "name": "业务日期",
+            "role": "option"
+          },
+          "e114": {
+            "name": "订单更新日期",
+            "role": "option"
+          },
+          "e115": {
+            "name": "ETD",
+            "role": "option"
+          },
+          "e116": {
+            "name": "订单创建日期",
+            "role": "option"
+          },
+          "e117": {
+            "name": "放舱日期",
+            "role": "option"
+          },
+          "e118": {
+            "name": "拖车日期",
+            "role": "option"
+          },
+          "e119": {
+            "name": "报关日期",
+            "role": "option"
+          },
+          "e12": {
+            "name": "",
+            "role": "generic"
+          },
+          "e120": {
+            "name": "订舱日期",
+            "role": "option"
+          },
+          "e121": {
+            "name": "ATD",
+            "role": "option"
+          },
+          "e122": {
+            "name": "ATA",
+            "role": "option"
+          },
+          "e123": {
+            "name": "承诺回款日期",
+            "role": "option"
+          },
+          "e124": {
+            "name": "操作日期",
+            "role": "option"
+          },
+          "e125": {
+            "name": "装船日期",
+            "role": "option"
+          },
+          "e126": {
+            "name": "开单日期",
+            "role": "option"
+          },
+          "e127": {
+            "name": "全部",
+            "role": "option"
+          },
+          "e128": {
+            "name": "出口",
+            "role": "option"
+          },
+          "e129": {
+            "name": "进口",
+            "role": "option"
+          },
+          "e13": {
+            "name": "",
+            "role": "generic"
+          },
+          "e130": {
+            "name": "全部",
+            "role": "option"
+          },
+          "e131": {
+            "name": "JOB",
+            "role": "option"
+          },
+          "e132": {
+            "name": "HBL",
+            "role": "option"
+          },
+          "e133": {
+            "name": "MBL",
+            "role": "option"
+          },
+          "e134": {
+            "name": "全部",
+            "role": "option"
+          },
+          "e135": {
+            "name": "未退关",
+            "role": "option"
+          },
+          "e136": {
+            "name": "退关",
+            "role": "option"
+          },
+          "e137": {
+            "name": "全部",
+            "role": "option"
+          },
+          "e138": {
+            "name": "是",
+            "role": "option"
+          },
+          "e139": {
+            "name": "否",
+            "role": "option"
+          },
+          "e14": {
+            "name": "",
+            "role": "generic"
+          },
+          "e140": {
+            "name": "",
+            "role": "option"
+          },
+          "e141": {
+            "name": "未全自审",
+            "role": "option"
+          },
+          "e142": {
+            "name": "异常单",
+            "role": "option"
+          },
+          "e143": {
+            "name": "全自审待主管审核",
+            "role": "option"
+          },
+          "e144": {
+            "name": "3天内截关",
+            "role": "option"
+          },
+          "e145": {
+            "name": "半天未订舱",
+            "role": "option"
+          },
+          "e146": {
+            "name": "半天未放舱",
+            "role": "option"
+          },
+          "e147": {
+            "name": "3天内截港",
+            "role": "option"
+          },
+          "e148": {
+            "name": "3天内截单",
+            "role": "option"
+          },
+          "e149": {
+            "name": "晚订舱",
+            "role": "option"
+          },
+          "e15": {
+            "name": "",
+            "role": "generic"
+          },
+          "e150": {
+            "name": "晚放舱",
+            "role": "option"
+          },
+          "e151": {
+            "name": "晚开船",
+            "role": "option"
+          },
+          "e152": {
+            "name": "未开船",
+            "role": "option"
+          },
+          "e153": {
+            "name": "未做费用",
+            "role": "option"
+          },
+          "e154": {
+            "name": "已做费用",
+            "role": "option"
+          },
+          "e155": {
+            "name": "费用计划-主管可审核",
+            "role": "option"
+          },
+          "e156": {
+            "name": "费用计划-主管退回",
+            "role": "option"
+          },
+          "e157": {
+            "name": "费用计划-客户待确认",
+            "role": "option"
+          },
+          "e158": {
+            "name": "费用计划-客户有异议",
+            "role": "option"
+          },
+          "e159": {
+            "name": "费用计划-预估费用",
+            "role": "option"
+          },
+          "e16": {
+            "name": "",
+            "role": "generic"
+          },
+          "e160": {
+            "name": "仅我司拖车自报关",
+            "role": "option"
+          },
+          "e161": {
+            "name": "费用已审核",
+            "role": "option"
+          },
+          "e162": {
+            "name": "仅我司报关自拖车",
+            "role": "option"
+          },
+          "e163": {
+            "name": "费用未审核",
+            "role": "option"
+          },
+          "e164": {
+            "name": "我司拖车+报关",
+            "role": "option"
+          },
+          "e165": {
+            "name": "船开3天未做费用",
+            "role": "option"
+          },
+          "e166": {
+            "name": "客户自拖自报",
+            "role": "option"
+          },
+          "e167": {
+            "name": "ETA 前7天的未放单",
+            "role": "option"
+          },
+          "e168": {
+            "name": "Job已锁定",
+            "role": "option"
+          },
+          "e169": {
+            "name": "Job未锁定",
+            "role": "option"
+          },
+          "e17": {
+            "name": "",
+            "role": "generic"
+          },
+          "e170": {
+            "name": "已做收入未做成本",
+            "role": "option"
+          },
+          "e171": {
+            "name": "已做成本未做收入",
+            "role": "option"
+          },
+          "e172": {
+            "name": "未开票",
+            "role": "option"
+          },
+          "e173": {
+            "name": "部分开票",
+            "role": "option"
+          },
+          "e174": {
+            "name": "已开票",
+            "role": "option"
+          },
+          "e175": {
+            "name": "未核销",
+            "role": "option"
+          },
+          "e176": {
+            "name": "部分核销",
+            "role": "option"
+          },
+          "e177": {
+            "name": "已核销",
+            "role": "option"
+          },
+          "e178": {
+            "name": "托书上传未完成",
+            "role": "option"
+          },
+          "e179": {
+            "name": "BL/账单未完成",
+            "role": "option"
+          },
+          "e18": {
+            "name": " 空运业务",
+            "role": "link"
+          },
+          "e180": {
+            "name": "报关单+放行条上传未完成",
+            "role": "option"
+          },
+          "e181": {
+            "name": "未做柜",
+            "role": "option"
+          },
+          "e182": {
+            "name": "已做柜",
+            "role": "option"
+          },
+          "e183": {
+            "name": "未甩柜",
+            "role": "option"
+          },
+          "e184": {
+            "name": "已甩柜",
+            "role": "option"
+          },
+          "e185": {
+            "name": "装箱不完整",
+            "role": "option"
+          },
+          "e186": {
+            "name": "未入库",
+            "role": "option"
+          },
+          "e187": {
+            "name": "未放单",
+            "role": "option"
+          },
+          "e188": {
+            "name": "已退关有费用",
+            "role": "option"
+          },
+          "e189": {
+            "name": "免箱快到期",
+            "role": "option"
+          },
+          "e19": {
+            "name": " 铁路业务",
+            "role": "link"
+          },
+          "e190": {
+            "name": "超期用箱",
+            "role": "option"
+          },
+          "e191": {
+            "name": "未上传MBL附件",
+            "role": "option"
+          },
+          "e192": {
+            "name": "已上传MBL附件",
+            "role": "option"
+          },
+          "e193": {
+            "name": "未发送AMS",
+            "role": "option"
+          },
+          "e194": {
+            "name": "3天内需要发送AMS",
+            "role": "option"
+          },
+          "e195": {
+            "name": "已发送AMS",
+            "role": "option"
+          },
+          "e196": {
+            "name": "接收出口订单",
+            "role": "option"
+          },
+          "e197": {
+            "name": "船开5天销售未确认账单",
+            "role": "option"
+          },
+          "e198": {
+            "name": "到港后N天后未提柜",
+            "role": "option"
+          },
+          "e199": {
+            "name": "高底利润(利润率不正常)",
+            "role": "option"
+          },
+          "e2": {
+            "name": "",
+            "role": "Iframe"
+          },
+          "e20": {
+            "name": " 其他业务",
+            "role": "link"
+          },
+          "e200": {
+            "name": "开船3个工作日待确认",
+            "role": "option"
+          },
+          "e201": {
+            "name": "开船7个工作日待确认",
+            "role": "option"
+          },
+          "e202": {
+            "name": "3天内到港",
+            "role": "option"
+          },
+          "e203": {
+            "name": "5天内到港",
+            "role": "option"
+          },
+          "e204": {
+            "name": "操作已自审",
+            "role": "option"
+          },
+          "e205": {
+            "name": "操作已自审,单据未锁定",
+            "role": "option"
+          },
+          "e206": {
+            "name": "",
+            "role": "option"
+          },
+          "e207": {
+            "name": "收货人",
+            "role": "option"
+          },
+          "e208": {
+            "name": "发货人",
+            "role": "option"
+          },
+          "e209": {
+            "name": "通知人",
+            "role": "option"
+          },
+          "e21": {
+            "name": " 财务管理",
+            "role": "link"
+          },
+          "e210": {
+            "name": "海外代理",
+            "role": "option"
+          },
+          "e211": {
+            "name": "订舱代理",
+            "role": "option"
+          },
+          "e212": {
+            "name": "车队",
+            "role": "option"
+          },
+          "e213": {
+            "name": "报关行",
+            "role": "option"
+          },
+          "e214": {
+            "name": "",
+            "role": "option"
+          },
+          "e215": {
+            "name": "收货地",
+            "role": "option"
+          },
+          "e216": {
+            "name": "起运港",
+            "role": "option"
+          },
+          "e217": {
+            "name": "中转港",
+            "role": "option"
+          },
+          "e218": {
+            "name": "卸货港",
+            "role": "option"
+          },
+          "e219": {
+            "name": "交货地",
+            "role": "option"
+          },
+          "e22": {
+            "name": " 报表中心",
+            "role": "link"
+          },
+          "e220": {
+            "name": "目的地",
+            "role": "option"
+          },
+          "e221": {
+            "name": "AKL",
+            "role": "option"
+          },
+          "e222": {
+            "name": "20",
+            "role": "option"
+          },
+          "e223": {
+            "name": "50",
+            "role": "option"
+          },
+          "e224": {
+            "name": "100",
+            "role": "option"
+          },
+          "e225": {
+            "name": "500",
+            "role": "option"
+          },
+          "e226": {
+            "name": "",
+            "role": "option"
+          },
+          "e227": {
+            "name": "询价人员",
+            "role": "option"
+          },
+          "e228": {
+            "name": "海外收款员",
+            "role": "option"
+          },
+          "e229": {
+            "name": "打单人员",
+            "role": "option"
+          },
+          "e23": {
+            "name": " 系统设置",
+            "role": "link"
+          },
+          "e230": {
+            "name": "航线经理",
+            "role": "option"
+          },
+          "e231": {
+            "name": "订舱人员",
+            "role": "option"
+          },
+          "e232": {
+            "name": "操作",
+            "role": "option"
+          },
+          "e233": {
+            "name": "国外客服",
+            "role": "option"
+          },
+          "e234": {
+            "name": "单证",
+            "role": "option"
+          },
+          "e235": {
+            "name": "客服",
+            "role": "option"
+          },
+          "e236": {
+            "name": "销售员",
+            "role": "option"
+          },
+          "e237": {
+            "name": "兼职销售",
+            "role": "option"
+          },
+          "e238": {
+            "name": "航线代表",
+            "role": "option"
+          },
+          "e239": {
+            "name": "财务",
+            "role": "option"
+          },
+          "e24": {
+            "name": " 权限管理",
+            "role": "link"
+          },
+          "e240": {
+            "name": "管理员",
+            "role": "option"
+          },
+          "e241": {
+            "name": "JOB NO.",
+            "role": "cell"
+          },
+          "e242": {
+            "name": "收货人",
+            "role": "cell"
+          },
+          "e243": {
+            "name": "客户参考号",
+            "role": "cell"
+          },
+          "e244": {
+            "name": "主拼号",
+            "role": "cell"
+          },
+          "e245": {
+            "name": "合并MBL号",
+            "role": "cell"
+          },
+          "e246": {
+            "name": "HBL NO.",
+            "role": "cell"
+          },
+          "e247": {
+            "name": "装箱",
+            "role": "cell"
+          },
+          "e248": {
+            "name": "MBL NO.",
+            "role": "cell"
+          },
+          "e249": {
+            "name": "文件号",
+            "role": "cell"
+          },
+          "e25": {
+            "name": "",
+            "role": "listitem"
+          },
+          "e250": {
+            "name": "客户简称",
+            "role": "cell"
+          },
+          "e251": {
+            "name": "订舱代理简称",
+            "role": "cell"
+          },
+          "e252": {
+            "name": "PO NO.",
+            "role": "cell"
+          },
+          "e253": {
+            "name": "航线经理",
+            "role": "cell"
+          },
+          "e254": {
+            "name": "送货仓库",
+            "role": "cell"
+          },
+          "e255": {
+            "name": "货物尺寸",
+            "role": "cell"
+          },
+          "e256": {
+            "name": "单据类型",
+            "role": "cell"
+          },
+          "e257": {
+            "name": "ETD",
+            "role": "cell"
+          },
+          "e258": {
+            "name": "截SI",
+            "role": "cell"
+          },
+          "e259": {
+            "name": "起运港",
+            "role": "cell"
+          },
+          "e26": {
+            "name": "",
+            "role": "listitem"
+          },
+          "e260": {
+            "name": "卸货港",
+            "role": "cell"
+          },
+          "e261": {
+            "name": "进出口",
+            "role": "cell"
+          },
+          "e262": {
+            "name": "业务类型",
+            "role": "cell"
+          },
+          "e263": {
+            "name": "揽货方式",
+            "role": "cell"
+          },
+          "e264": {
+            "name": "委托方",
+            "role": "cell"
+          },
+          "e265": {
+            "name": "客户",
+            "role": "cell"
+          },
+          "e266": {
+            "name": "销售员",
+            "role": "cell"
+          },
+          "e267": {
+            "name": "放单方式(HBL NO.)",
+            "role": "cell"
+          },
+          "e268": {
+            "name": "放单方式(MBL NO.)",
+            "role": "cell"
+          },
+          "e269": {
+            "name": "放单状态",
+            "role": "cell"
+          },
+          "e27": {
+            "name": "close tab",
+            "role": "link"
+          },
+          "e270": {
+            "name": "放单状态(HBL NO.)",
+            "role": "cell"
+          },
+          "e271": {
+            "name": "放单状态(MBL NO.)",
+            "role": "cell"
+          },
+          "e272": {
+            "name": "业务日期",
+            "role": "cell"
+          },
+          "e273": {
+            "name": "出单方式",
+            "role": "cell"
+          },
+          "e274": {
+            "name": "箱号",
+            "role": "cell"
+          },
+          "e275": {
+            "name": "已装箱数量",
+            "role": "cell"
+          },
+          "e276": {
+            "name": "箱子总数量",
+            "role": "cell"
+          },
+          "e277": {
+            "name": "退关",
+            "role": "cell"
+          },
+          "e278": {
+            "name": "退关原因",
+            "role": "cell"
+          },
+          "e279": {
+            "name": "Switch B/L",
+            "role": "cell"
+          },
+          "e28": {
+            "name": "  主页",
+            "role": "link"
+          },
+          "e280": {
+            "name": "锁定",
+            "role": "cell"
+          },
+          "e281": {
+            "name": "主拼单",
+            "role": "cell"
+          },
+          "e282": {
+            "name": "创建人",
+            "role": "cell"
+          },
+          "e283": {
+            "name": "创建日期",
+            "role": "cell"
+          },
+          "e284": {
+            "name": "更新人",
+            "role": "cell"
+          },
+          "e285": {
+            "name": "更新日期",
+            "role": "cell"
+          },
+          "e286": {
+            "name": "审核时间",
+            "role": "cell"
+          },
+          "e287": {
+            "name": "是否退舱",
+            "role": "cell"
+          },
+          "e288": {
+            "name": "退舱时间",
+            "role": "cell"
+          },
+          "e289": {
+            "name": "退回原因",
+            "role": "cell"
+          },
+          "e29": {
+            "name": "  海运订单",
+            "role": "link"
+          },
+          "e290": {
+            "name": "最后更新日期",
+            "role": "cell"
+          },
+          "e291": {
+            "name": "付款方式",
+            "role": "cell"
+          },
+          "e292": {
+            "name": "第三方付款地",
+            "role": "cell"
+          },
+          "e293": {
+            "name": "交接方式",
+            "role": "cell"
+          },
+          "e294": {
+            "name": "贸易条款",
+            "role": "cell"
+          },
+          "e295": {
+            "name": "英文品名",
+            "role": "cell"
+          },
+          "e296": {
+            "name": "中文品名",
+            "role": "cell"
+          },
+          "e297": {
+            "name": "分公司",
+            "role": "cell"
+          },
+          "e298": {
+            "name": "装箱方式",
+            "role": "cell"
+          },
+          "e299": {
+            "name": "区域",
+            "role": "cell"
+          },
+          "e3": {
+            "name": "",
+            "role": "link"
+          },
+          "e30": {
+            "name": "搜索",
+            "role": "link"
+          },
+          "e300": {
+            "name": "报关行",
+            "role": "cell"
+          },
+          "e301": {
+            "name": "车队",
+            "role": "cell"
+          },
+          "e302": {
+            "name": "发货人",
+            "role": "cell"
+          },
+          "e303": {
+            "name": "订舱代理",
+            "role": "cell"
+          },
+          "e304": {
+            "name": "订舱代理(CN)",
+            "role": "cell"
+          },
+          "e305": {
+            "name": "订舱代理(EN)",
+            "role": "cell"
+          },
+          "e306": {
+            "name": "海外代理",
+            "role": "cell"
+          },
+          "e307": {
+            "name": "船公司",
+            "role": "cell"
+          },
+          "e308": {
+            "name": "船名",
+            "role": "cell"
+          },
+          "e309": {
+            "name": "航次",
+            "role": "cell"
+          },
+          "e31": {
+            "name": "新增",
+            "role": "link"
+          },
+          "e310": {
+            "name": "货好日期",
+            "role": "cell"
+          },
+          "e311": {
+            "name": "放舱日期",
+            "role": "cell"
+          },
+          "e312": {
+            "name": "截VGM",
+            "role": "cell"
+          },
+          "e313": {
+            "name": "截关日",
+            "role": "cell"
+          },
+          "e314": {
+            "name": "ATD",
+            "role": "cell"
+          },
+          "e315": {
+            "name": "ETA",
+            "role": "cell"
+          },
+          "e316": {
+            "name": "ATA",
+            "role": "cell"
+          },
+          "e317": {
+            "name": "装船日期",
+            "role": "cell"
+          },
+          "e318": {
+            "name": "协议号",
+            "role": "cell"
+          },
+          "e319": {
+            "name": "收货地",
+            "role": "cell"
+          },
+          "e32": {
+            "name": "复制",
+            "role": "link"
+          },
+          "e320": {
+            "name": "中转港",
+            "role": "cell"
+          },
+          "e321": {
+            "name": "交货地",
+            "role": "cell"
+          },
+          "e322": {
+            "name": "目的地",
+            "role": "cell"
+          },
+          "e323": {
+            "name": "重量",
+            "role": "cell"
+          },
+          "e324": {
+            "name": "体积",
+            "role": "cell"
+          },
+          "e325": {
+            "name": "件数",
+            "role": "cell"
+          },
+          "e326": {
+            "name": "计费重量",
+            "role": "cell"
+          },
+          "e327": {
+            "name": "操作员",
+            "role": "cell"
+          },
+          "e328": {
+            "name": "单证",
+            "role": "cell"
+          },
+          "e329": {
+            "name": "客服",
+            "role": "cell"
+          },
+          "e33": {
+            "name": "编辑",
+            "role": "link"
+          },
+          "e330": {
+            "name": "订舱人员",
+            "role": "cell"
+          },
+          "e331": {
+            "name": "协助方",
+            "role": "cell"
+          },
+          "e332": {
+            "name": "异常信息",
+            "role": "cell"
+          },
+          "e333": {
+            "name": "订舱日期",
+            "role": "cell"
+          },
+          "e334": {
+            "name": "拖车日期",
+            "role": "cell"
+          },
+          "e335": {
+            "name": "报关日期",
+            "role": "cell"
+          },
+          "e336": {
+            "name": "询价人员",
+            "role": "cell"
+          },
+          "e337": {
+            "name": "LC No.",
+            "role": "cell"
+          },
+          "e338": {
+            "name": "进仓编号",
+            "role": "cell"
+          },
+          "e339": {
+            "name": "Pre-Alert",
+            "role": "cell"
+          },
+          "e34": {
+            "name": "批量更新",
+            "role": "link"
+          },
+          "e340": {
+            "name": "订舱注意事项(内部)",
+            "role": "cell"
+          },
+          "e341": {
+            "name": "出口方分公司",
+            "role": "cell"
+          },
+          "e342": {
+            "name": "进口方分公司",
+            "role": "cell"
+          },
+          "e343": {
+            "name": "协议类型",
+            "role": "cell"
+          },
+          "e344": {
+            "name": "出口方转出",
+            "role": "cell"
+          },
+          "e345": {
+            "name": "报关方式",
+            "role": "cell"
+          },
+          "e346": {
+            "name": "操作备注",
+            "role": "cell"
+          },
+          "e347": {
+            "name": "",
+            "role": "checkbox"
+          },
+          "e35": {
+            "name": "删除",
+            "role": "link"
+          },
+          "e36": {
+            "name": "拆单",
+            "role": "link"
+          },
+          "e37": {
+            "name": "装箱",
+            "role": "link"
+          },
+          "e38": {
+            "name": "打印预览",
+            "role": "link"
+          },
+          "e39": {
+            "name": "B/L 预览",
+            "role": "link"
+          },
+          "e4": {
+            "name": "",
+            "role": "link"
+          },
+          "e40": {
+            "name": "单证",
+            "role": "link"
+          },
+          "e41": {
+            "name": "费用",
+            "role": "link"
+          },
+          "e42": {
+            "name": "聊天",
+            "role": "link"
+          },
+          "e43": {
+            "name": "提醒",
+            "role": "link"
+          },
+          "e44": {
+            "name": "更多",
+            "role": "link"
+          },
+          "e45": {
+            "name": "方案",
+            "role": "link"
+          },
+          "e46": {
+            "name": "设置列",
+            "role": "link"
+          },
+          "e47": {
+            "name": "刷新",
+            "role": "link"
+          },
+          "e48": {
+            "name": "重置",
+            "role": "link"
+          },
+          "e49": {
+            "name": " 导出",
+            "role": "link"
+          },
+          "e5": {
+            "name": "",
+            "role": "link"
+          },
+          "e50": {
+            "name": " 导出全部",
+            "role": "link"
+          },
+          "e51": {
+            "name": "常用",
+            "role": "link"
+          },
+          "e52": {
+            "name": "其他",
+            "role": "link"
+          },
+          "e53": {
+            "name": "常用代码",
+            "role": "textbox"
+          },
+          "e54": {
+            "name": "",
+            "role": "combobox"
+          },
+          "e55": {
+            "name": "快捷日期",
+            "role": "link"
+          },
+          "e56": {
+            "name": "",
+            "role": "combobox"
+          },
+          "e57": {
+            "name": "",
+            "role": "textbox"
+          },
+          "e58": {
+            "name": "",
+            "role": "link"
+          },
+          "e59": {
+            "name": "",
+            "role": "textbox"
+          },
+          "e6": {
+            "name": "",
+            "role": "link"
+          },
+          "e60": {
+            "name": "",
+            "role": "link"
+          },
+          "e61": {
+            "name": "",
+            "role": "textbox"
+          },
+          "e62": {
+            "name": "",
+            "role": "link"
+          },
+          "e63": {
+            "name": "",
+            "role": "textbox"
+          },
+          "e64": {
+            "name": "",
+            "role": "link"
+          },
+          "e65": {
+            "name": "",
+            "role": "textbox"
+          },
+          "e66": {
+            "name": "",
+            "role": "combobox"
+          },
+          "e67": {
+            "name": "",
+            "role": "combobox"
+          },
+          "e68": {
+            "name": "",
+            "role": "combobox"
+          },
+          "e69": {
+            "name": "",
+            "role": "combobox"
+          },
+          "e7": {
+            "name": "关闭全部",
+            "role": "button"
+          },
+          "e70": {
+            "name": "",
+            "role": "combobox"
+          },
+          "e71": {
+            "name": "",
+            "role": "combobox"
+          },
+          "e72": {
+            "name": "",
+            "role": "textbox"
+          },
+          "e73": {
+            "name": "",
+            "role": "link"
+          },
+          "e74": {
+            "name": "",
+            "role": "combobox"
+          },
+          "e75": {
+            "name": "",
+            "role": "textbox"
+          },
+          "e76": {
+            "name": "",
+            "role": "link"
+          },
+          "e77": {
+            "name": "",
+            "role": "combobox"
+          },
+          "e78": {
+            "name": "",
+            "role": "combobox"
+          },
+          "e79": {
+            "name": "   ",
+            "role": "link"
+          },
+          "e8": {
+            "name": "CN",
+            "role": "button"
+          },
+          "e80": {
+            "name": "   ",
+            "role": "link"
+          },
+          "e81": {
+            "name": "",
+            "role": "textbox"
+          },
+          "e82": {
+            "name": "   ",
+            "role": "link"
+          },
+          "e83": {
+            "name": "   ",
+            "role": "link"
+          },
+          "e84": {
+            "name": "未自审",
+            "role": "checkbox"
+          },
+          "e85": {
+            "name": "",
+            "role": "combobox"
+          },
+          "e86": {
+            "name": "",
+            "role": "textbox"
+          },
+          "e87": {
+            "name": "",
+            "role": "link"
+          },
+          "e88": {
+            "name": "",
+            "role": "link"
+          },
+          "e89": {
+            "name": "",
+            "role": "link"
+          },
+          "e9": {
+            "name": "",
+            "role": "link"
+          },
+          "e90": {
+            "name": "常用代码",
+            "role": "option"
+          },
+          "e91": {
+            "name": "订单号",
+            "role": "option"
+          },
+          "e92": {
+            "name": "主拼号",
+            "role": "option"
+          },
+          "e93": {
+            "name": "提单号",
+            "role": "option"
+          },
+          "e94": {
+            "name": "分单号",
+            "role": "option"
+          },
+          "e95": {
+            "name": "箱号查询",
+            "role": "option"
+          },
+          "e96": {
+            "name": "客户名称",
+            "role": "option"
+          },
+          "e97": {
+            "name": "项目编号",
+            "role": "option"
+          },
+          "e98": {
+            "name": "发票号",
+            "role": "option"
+          },
+          "e99": {
+            "name": "对账单号",
+            "role": "option"
+          }
+        },
+        "snapshot": "- generic [ref=e1] clickable [cursor:pointer]\n- button \"CN\" [expanded=false, ref=e8]\n- link \"\" [ref=e3]\n- link \"\" [ref=e4]\n- link \"\" [ref=e5]\n- link \"\" [ref=e6]\n- link \"\" [ref=e9]\n- link \" 海运业务\" [ref=e10]\n- generic \"海运订单\" [ref=e11] clickable [cursor:pointer]\n- generic \"船期查询\" [ref=e12] clickable [cursor:pointer]\n- generic \"单证管理\" [ref=e13] clickable [cursor:pointer]\n- generic \"舱位管理\" [ref=e14] clickable [cursor:pointer]\n- generic \"EDI 管理\" [ref=e15] clickable [cursor:pointer]\n- generic \"放单管理\" [ref=e16] clickable [cursor:pointer]\n- generic \"恢复数据\" [ref=e17] clickable [cursor:pointer]\n- link \" 空运业务\" [ref=e18]\n- link \" 铁路业务\" [ref=e19]\n- link \" 其他业务\" [ref=e20]\n- link \" 财务管理\" [ref=e21]\n- link \" 报表中心\" [ref=e22]\n- link \" 系统设置\" [ref=e23]\n- link \" 权限管理\" [ref=e24]\n- button \"关闭全部\" [ref=e7]\n- listitem \"主页\" [level=1, ref=e25] clickable [cursor:pointer]\n  - link \" 主页\" [ref=e28]\n- listitem \"海运订单\" [level=1, ref=e26] clickable [cursor:pointer]\n  - link \" 海运订单\" [ref=e29]\n  - link \"close tab\" [ref=e27]\n- Iframe [ref=e2]\n  - link \"搜索\" [ref=e30]\n  - link \"新增\" [ref=e31]\n  - link \"复制\" [ref=e32]\n  - link \"编辑\" [ref=e33]\n  - link \"批量更新\" [ref=e34]\n  - link \"删除\" [ref=e35]\n  - link \"拆单\" [ref=e36]\n  - link \"装箱\" [ref=e37]\n  - link \"打印预览\" [ref=e38]\n  - link \"B/L 预览\" [ref=e39]\n  - link \"单证\" [ref=e40]\n  - link \"费用\" [ref=e41]\n  - link \"聊天\" [ref=e42]\n  - link \"提醒\" [ref=e43]\n  - link \"更多\" [ref=e44]\n  - link \"方案\" [ref=e45]\n  - link \"设置列\" [ref=e46]\n  - link \"刷新\" [ref=e47]\n  - link \"重置\" [ref=e48]\n  - link \" 导出\" [ref=e49]\n  - link \" 导出全部\" [ref=e50]\n  - link \"常用\" [ref=e51]\n  - link \"其他\" [ref=e52]\n  - textbox \"常用代码\" [ref=e53]\n  - combobox [expanded=false, ref=e54]: 常用代码\n    - option \"常用代码\" [selected, ref=e90]\n    - option \"订单号\" [ref=e91]\n    - option \"主拼号\" [ref=e92]\n    - option \"提单号\" [ref=e93]\n    - option \"分单号\" [ref=e94]\n    - option \"箱号查询\" [ref=e95]\n    - option \"客户名称\" [ref=e96]\n    - option \"项目编号\" [ref=e97]\n    - option \"发票号\" [ref=e98]\n    - option \"对账单号\" [ref=e99]\n    - option \"PO No.\" [ref=e100]\n    - option \"发票抬头\" [ref=e101]\n    - option \"进仓编号\" [ref=e102]\n    - option \"相关公司\" [ref=e103]\n    - option \"委托方\" [ref=e104]\n    - option \"订舱注意事项\" [ref=e105]\n    - option \"合并MBL\" [ref=e106]\n    - option \"包机/包列号\" [ref=e107]\n    - option \"拖车批次号\" [ref=e108]\n    - option \"客户简称\" [ref=e109]\n    - option \"报关备注\" [ref=e110]\n  - link \"快捷日期\" [ref=e55]\n  - combobox [expanded=false, ref=e56]: 订单创建日期\n    - option [ref=e111]\n    - option \"ETA\" [ref=e112]\n    - option \"业务日期\" [ref=e113]\n    - option \"订单更新日期\" [ref=e114]\n    - option \"ETD\" [ref=e115]\n    - option \"订单创建日期\" [selected, ref=e116]\n    - option \"放舱日期\" [ref=e117]\n    - option \"拖车日期\" [ref=e118]\n    - option \"报关日期\" [ref=e119]\n    - option \"订舱日期\" [ref=e120]\n    - option \"ATD\" [ref=e121]\n    - option \"ATA\" [ref=e122]\n    - option \"承诺回款日期\" [ref=e123]\n    - option \"操作日期\" [ref=e124]\n    - option \"装船日期\" [ref=e125]\n    - option \"开单日期\" [ref=e126]\n  - textbox [ref=e57]: 2026-05-12\n  - link \"\" [ref=e58]\n  - textbox [ref=e59]: 2026-07-11\n  - link \"\" [ref=e60]\n  - textbox [ref=e61]\n  - link \"\" [ref=e62]\n  - textbox [ref=e63]\n  - link \"\" [ref=e64]\n  - textbox [ref=e65]\n  - combobox [expanded=false, ref=e66]: 全部\n    - option \"全部\" [selected, ref=e127]\n    - option \"出口\" [ref=e128]\n    - option \"进口\" [ref=e129]\n  - combobox [expanded=false, disabled, ref=e67]: 全部\n    - option \"全部\" [disabled, ref=e130]\n    - option \"JOB\" [disabled, ref=e131]\n    - option \"HBL\" [disabled, ref=e132]\n    - option \"MBL\" [disabled, ref=e133]\n  - combobox [expanded=false, ref=e68]: 全部\n    - option \"全部\" [selected, ref=e134]\n    - option \"未退关\" [ref=e135]\n    - option \"退关\" [ref=e136]\n  - combobox [expanded=false, ref=e69]: 全部\n    - option \"全部\" [selected, ref=e137]\n    - option \"是\" [ref=e138]\n    - option \"否\" [ref=e139]\n  - checkbox \"未自审\" [checked=false, ref=e84]\n  - combobox [expanded=false, ref=e85]\n    - option [selected, ref=e226]\n    - option \"询价人员\" [ref=e227]\n    - option \"海外收款员\" [ref=e228]\n    - option \"打单人员\" [ref=e229]\n    - option \"航线经理\" [ref=e230]\n    - option \"订舱人员\" [ref=e231]\n    - option \"操作\" [ref=e232]\n    - option \"国外客服\" [ref=e233]\n    - option \"单证\" [ref=e234]\n    - option \"客服\" [ref=e235]\n    - option \"销售员\" [ref=e236]\n    - option \"兼职销售\" [ref=e237]\n    - option \"航线代表\" [ref=e238]\n    - option \"财务\" [ref=e239]\n    - option \"管理员\" [ref=e240]\n  - textbox [disabled, ref=e86]\n  - link \"\" [ref=e87]\n  - link \"\" [ref=e88]\n  - combobox [expanded=false, ref=e70]\n    - option [selected, ref=e140]\n    - option \"未全自审\" [ref=e141]\n    - option \"异常单\" [ref=e142]\n    - option \"全自审待主管审核\" [ref=e143]\n    - option \"3天内截关\" [ref=e144]\n    - option \"半天未订舱\" [ref=e145]\n    - option \"半天未放舱\" [ref=e146]\n    - option \"3天内截港\" [ref=e147]\n    - option \"3天内截单\" [ref=e148]\n    - option \"晚订舱\" [ref=e149]\n    - option \"晚放舱\" [ref=e150]\n    - option \"晚开船\" [ref=e151]\n    - option \"未开船\" [ref=e152]\n    - option \"未做费用\" [ref=e153]\n    - option \"已做费用\" [ref=e154]\n    - option \"费用计划-主管可审核\" [ref=e155]\n    - option \"费用计划-主管退回\" [ref=e156]\n    - option \"费用计划-客户待确认\" [ref=e157]\n    - option \"费用计划-客户有异议\" [ref=e158]\n    - option \"费用计划-预估费用\" [ref=e159]\n    - option \"仅我司拖车自报关\" [ref=e160]\n    - option \"费用已审核\" [ref=e161]\n    - option \"仅我司报关自拖车\" [ref=e162]\n    - option \"费用未审核\" [ref=e163]\n    - option \"我司拖车+报关\" [ref=e164]\n    - option \"船开3天未做费用\" [ref=e165]\n    - option \"客户自拖自报\" [ref=e166]\n    - option \"ETA 前7天的未放单\" [ref=e167]\n    - option \"Job已锁定\" [ref=e168]\n    - option \"Job未锁定\" [ref=e169]\n    - option \"已做收入未做成本\" [ref=e170]\n    - option \"已做成本未做收入\" [ref=e171]\n    - option \"未开票\" [ref=e172]\n    - option \"部分开票\" [ref=e173]\n    - option \"已开票\" [ref=e174]\n    - option \"未核销\" [ref=e175]\n    - option \"部分核销\" [ref=e176]\n    - option \"已核销\" [ref=e177]\n    - option \"托书上传未完成\" [ref=e178]\n    - option \"BL/账单未完成\" [ref=e179]\n    - option \"报关单+放行条上传未完成\" [ref=e180]\n    - option \"未做柜\" [ref=e181]\n    - option \"已做柜\" [ref=e182]\n    - option \"未甩柜\" [ref=e183]\n    - option \"已甩柜\" [ref=e184]\n    - option \"装箱不完整\" [ref=e185]\n    - option \"未入库\" [ref=e186]\n    - option \"未放单\" [ref=e187]\n    - option \"已退关有费用\" [ref=e188]\n    - option \"免箱快到期\" [ref=e189]\n    - option \"超期用箱\" [ref=e190]\n    - option \"未上传MBL附件\" [ref=e191]\n    - option \"已上传MBL附件\" [ref=e192]\n    - option \"未发送AMS\" [ref=e193]\n    - option \"3天内需要发送AMS\" [ref=e194]\n    - option \"已发送AMS\" [ref=e195]\n    - option \"接收出口订单\" [ref=e196]\n    - option \"船开5天销售未确认账单\" [ref=e197]\n    - option \"到港后N天后未提柜\" [ref=e198]\n    - option \"高底利润(利润率不正常)\" [ref=e199]\n    - option \"开船3个工作日待确认\" [ref=e200]\n    - option \"开船7个工作日待确认\" [ref=e201]\n    - option \"3天内到港\" [ref=e202]\n    - option \"5天内到港\" [ref=e203]\n    - option \"操作已自审\" [ref=e204]\n    - option \"操作已自审,单据未锁定\" [ref=e205]\n  - combobox [expanded=false, ref=e71]\n    - option [selected, ref=e206]\n    - option \"收货人\" [ref=e207]\n    - option \"发货人\" [ref=e208]\n    - option \"通知人\" [ref=e209]\n    - option \"海外代理\" [ref=e210]\n    - option \"订舱代理\" [ref=e211]\n    - option \"车队\" [ref=e212]\n    - option \"报关行\" [ref=e213]\n  - link [ref=e89]\n  - textbox [ref=e72]\n  - link \"\" [ref=e73]\n  - combobox [expanded=false, ref=e74]\n    - option [selected, ref=e214]\n    - option \"收货地\" [ref=e215]\n    - option \"起运港\" [ref=e216]\n    - option \"中转港\" [ref=e217]\n    - option \"卸货港\" [ref=e218]\n    - option \"交货地\" [ref=e219]\n    - option \"目的地\" [ref=e220]\n  - textbox [ref=e75]\n  - link \"\" [ref=e76]\n  - combobox [expanded=false, ref=e77]: AKL\n    - option \"AKL\" [selected, ref=e221]\n  - checkbox [checked=false, ref=e347]\n  - cell \"JOB NO.\" [ref=e241]\n  - cell \"收货人\" [ref=e242]\n  - cell \"客户参考号\" [ref=e243]\n  - cell \"主拼号\" [ref=e244]\n  - cell \"合并MBL号\" [ref=e245]\n  - cell \"HBL NO.\" [ref=e246]\n  - cell \"装箱\" [ref=e247]\n  - cell \"MBL NO.\" [ref=e248]\n  - cell \"文件号\" [ref=e249]\n  - cell \"客户简称\" [ref=e250]\n  - cell \"订舱代理简称\" [ref=e251]\n  - cell \"PO NO.\" [ref=e252]\n  - cell \"航线经理\" [ref=e253]\n  - cell \"送货仓库\" [ref=e254]\n  - cell \"货物尺寸\" [ref=e255]\n  - cell \"单据类型\" [ref=e256]\n  - cell \"ETD\" [ref=e257]\n  - cell \"截SI\" [ref=e258]\n  - cell \"起运港\" [ref=e259]\n  - cell \"卸货港\" [ref=e260]\n  - cell \"进出口\" [ref=e261]\n  - cell \"业务类型\" [ref=e262]\n  - cell \"揽货方式\" [ref=e263]\n  - cell \"委托方\" [ref=e264]\n  - cell \"客户\" [ref=e265]\n  - cell \"销售员\" [ref=e266]\n  - cell \"放单方式(HBL NO.)\" [ref=e267]\n  - cell \"放单方式(MBL NO.)\" [ref=e268]\n  - cell \"放单状态\" [ref=e269]\n  - cell \"放单状态(HBL NO.)\" [ref=e270]\n  - cell \"放单状态(MBL NO.)\" [ref=e271]\n  - cell \"业务日期\" [ref=e272]\n  - cell \"出单方式\" [ref=e273]\n  - cell \"箱号\" [ref=e274]\n  - cell \"已装箱数量\" [ref=e275]\n  - cell \"箱子总数量\" [ref=e276]\n  - cell \"退关\" [ref=e277]\n  - cell \"退关原因\" [ref=e278]\n  - cell \"Switch B/L\" [ref=e279]\n  - cell \"锁定\" [ref=e280]\n  - cell \"主拼单\" [ref=e281]\n  - cell \"创建人\" [ref=e282]\n  - cell \"创建日期\" [ref=e283]\n  - cell \"更新人\" [ref=e284]\n  - cell \"更新日期\" [ref=e285]\n  - cell \"审核时间\" [ref=e286]\n  - cell \"是否退舱\" [ref=e287]\n  - cell \"退舱时间\" [ref=e288]\n  - cell \"退回原因\" [ref=e289]\n  - cell \"最后更新日期\" [ref=e290]\n  - cell \"付款方式\" [ref=e291]\n  - cell \"第三方付款地\" [ref=e292]\n  - cell \"交接方式\" [ref=e293]\n  - cell \"贸易条款\" [ref=e294]\n  - cell \"英文品名\" [ref=e295]\n  - cell \"中文品名\" [ref=e296]\n  - cell \"分公司\" [ref=e297]\n  - cell \"装箱方式\" [ref=e298]\n  - cell \"区域\" [ref=e299]\n  - cell \"报关行\" [ref=e300]\n  - cell \"车队\" [ref=e301]\n  - cell \"发货人\" [ref=e302]\n  - cell \"订舱代理\" [ref=e303]\n  - cell \"订舱代理(CN)\" [ref=e304]\n  - cell \"订舱代理(EN)\" [ref=e305]\n  - cell \"海外代理\" [ref=e306]\n  - cell \"船公司\" [ref=e307]\n  - cell \"船名\" [ref=e308]\n  - cell \"航次\" [ref=e309]\n  - cell \"货好日期\" [ref=e310]\n  - cell \"放舱日期\" [ref=e311]\n  - cell \"截VGM\" [ref=e312]\n  - cell \"截关日\" [ref=e313]\n  - cell \"ATD\" [ref=e314]\n  - cell \"ETA\" [ref=e315]\n  - cell \"ATA\" [ref=e316]\n  - cell \"装船日期\" [ref=e317]\n  - cell \"协议号\" [ref=e318]\n  - cell \"收货地\" [ref=e319]\n  - cell \"中转港\" [ref=e320]\n  - cell \"交货地\" [ref=e321]\n  - cell \"目的地\" [ref=e322]\n  - cell \"重量\" [ref=e323]\n  - cell \"体积\" [ref=e324]\n  - cell \"件数\" [ref=e325]\n  - cell \"计费重量\" [ref=e326]\n  - cell \"操作员\" [ref=e327]\n  - cell \"单证\" [ref=e328]\n  - cell \"客服\" [ref=e329]\n  - cell \"订舱人员\" [ref=e330]\n  - cell \"协助方\" [ref=e331]\n  - cell \"异常信息\" [ref=e332]\n  - cell \"订舱日期\" [ref=e333]\n  - cell \"拖车日期\" [ref=e334]\n  - cell \"报关日期\" [ref=e335]\n  - cell \"询价人员\" [ref=e336]\n  - cell \"LC No.\" [ref=e337]\n  - cell \"进仓编号\" [ref=e338]\n  - cell \"Pre-Alert\" [ref=e339]\n  - cell \"订舱注意事项(内部)\" [ref=e340]\n  - cell \"出口方分公司\" [ref=e341]\n  - cell \"进口方分公司\" [ref=e342]\n  - cell \"协议类型\" [ref=e343]\n  - cell \"出口方转出\" [ref=e344]\n  - cell \"报关方式\" [ref=e345]\n  - cell \"操作备注\" [ref=e346]\n  - combobox [expanded=false, ref=e78]: 20\n    - option \"20\" [selected, ref=e222]\n    - option \"50\" [ref=e223]\n    - option \"100\" [ref=e224]\n    - option \"500\" [ref=e225]\n  - link \" \" [ref=e79]\n  - link \" \" [ref=e80]\n  - textbox [ref=e81]: 0\n  - link \" \" [ref=e82]\n  - link \" \" [ref=e83]"
+      },
+      "error": null
+    }
+  }
+}
+

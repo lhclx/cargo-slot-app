@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>订单管理 - 货代舱位管理系统</title>
+<style>
+:root{--pri:#2F5496;--bg:#f5f7fa;--card:#fff;--bdr:#dde1e6;--txt:#333;--lt:#666;
+  --g:#28a745;--y:#ffc107;--b:#17a2b8;--o:#fd7e14;--gy:#6c757d;--nav:#1e293b;--nav-w:180px;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:-apple-system,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--txt);font-size:13px;}
+.app{display:flex;min-height:100vh;}
+
+/* Sidebar */
+.sidebar{width:var(--nav-w);background:var(--nav);color:#fff;position:fixed;top:0;left:0;bottom:0;z-index:50;display:flex;flex-direction:column;transition:width .2s;}
+.sb-title{padding:18px 16px;font-size:15px;font-weight:700;border-bottom:1px solid rgba(255,255,255,.1);letter-spacing:.5px;white-space:nowrap;overflow:hidden;}
+.sb-menu{flex:1;padding:6px 0;overflow-y:auto;}
+.sb-group{margin-bottom:2px;}
+.sb-group-title{display:flex;align-items:center;gap:8px;padding:9px 16px;color:rgba(255,255,255,.7);font-size:11px;font-weight:600;cursor:pointer;transition:.15s;letter-spacing:.5px;text-transform:uppercase;}
+.sb-group-title:hover{color:rgba(255,255,255,.9);}
+.sb-group-items{overflow:hidden;max-height:0;transition:max-height .25s ease;}
+.sb-group-items.open{max-height:600px;}
+.sb-item{display:flex;align-items:center;gap:8px;padding:8px 16px 8px 28px;color:rgba(255,255,255,.65);text-decoration:none;transition:.15s;cursor:pointer;font-size:13px;white-space:nowrap;position:relative;}
+.sb-item::before{content:'';position:absolute;left:18px;top:50%;width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,.3);transform:translateY(-50%);}
+.sb-item:hover{background:rgba(255,255,255,.06);color:rgba(255,255,255,.9);}
+.sb-item.active{background:rgba(96,165,250,.2);color:#fff;font-weight:500;}
+.sb-item.active::before{background:#60a5fa;}
+.main{margin-left:var(--nav-w);flex:1;min-width:0;}
+
+/* Header */
+.hd{background:var(--pri);color:#fff;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;}
+.hd h1{font-size:17px;font-weight:600;}
+.hd-btns{display:flex;gap:8px;}
+
+/* Toolbar */
+.tbar{background:var(--card);padding:12px 20px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;border-bottom:1px solid var(--bdr);}
+.scope-btns{display:flex;gap:0;}
+.scope-btn{padding:7px 16px;border:1px solid var(--bdr);background:#fff;cursor:pointer;font-size:13px;transition:.15s;}
+.scope-btn:first-child{border-radius:6px 0 0 6px;}
+.scope-btn:last-child{border-radius:0 6px 6px 0;border-left:none;}
+.scope-btn.active{background:var(--pri);color:#fff;border-color:var(--pri);}
+.scope-btn:hover:not(.active){background:#f0f2f5;}
+
+/* Table */
+.tw{background:var(--card);margin:16px 20px;border-radius:10px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.08);overflow-x:auto;-webkit-overflow-scrolling:touch;}
+table{width:100%;min-width:900px;border-collapse:collapse;font-size:13px;}
+th{background:var(--pri);color:#fff;padding:10px 8px;text-align:center;font-weight:600;white-space:nowrap;}
+td{padding:8px 8px;text-align:center;border-bottom:1px solid #f1f3f5;vertical-align:middle;}
+tr:hover td{background:#f8f9fa;}
+.badge{display:inline-block;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;}
+.bg-free{background:#d4edda;color:#155724;}.bg-booked{background:#fff3cd;color:#856404;}
+.bg-confirm{background:#d1ecf1;color:#0c5460;}.bg-done{background:#e2e3e5;color:#383d41;}
+
+/* Modal */
+.ov{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.5);z-index:200;justify-content:center;align-items:flex-start;padding-top:3%;}
+.ov.on{display:flex;}
+.md{background:#fff;border-radius:12px;width:94%;max-width:700px;max-height:85vh;overflow-y:auto;padding:24px;box-shadow:0 8px 30px rgba(0,0,0,.15);}
+.md h2{margin-bottom:18px;font-size:17px;color:var(--pri);}
+.fg{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;}
+.fg label{display:block;font-size:12px;font-weight:600;color:var(--lt);margin-bottom:4px;}
+.fg input,.fg select,.fg textarea{width:100%;padding:8px 10px;border:1px solid var(--bdr);border-radius:6px;font-size:13px;}
+.fg textarea{resize:vertical;min-height:50px;}
+.fg .full{grid-column:1/-1;}
+.mft{margin-top:16px;display:flex;justify-content:flex-end;gap:8px;}
+
+/* Login overlay */
+#loginView{position:fixed;top:0;left:0;right:0;bottom:0;background:linear-gradient(135deg,var(--pri) 0%,#1a3a6e 100%);display:flex;justify-content:center;align-items:center;z-index:1000;}
+.login-box{background:var(--card);border-radius:16px;padding:36px;width:90%;max-width:380px;box-shadow:0 20px 60px rgba(0,0,0,.3);}
+.login-box h2{text-align:center;color:var(--pri);margin-bottom:24px;font-size:22px;}
+.login-box .fg{display:block;margin-bottom:0;}
+.login-box label{display:block;margin-bottom:6px;font-size:13px;font-weight:600;color:var(--lt);}
+.login-box input{width:100%;padding:10px 14px;border:1px solid var(--bdr);border-radius:8px;font-size:14px;margin-bottom:16px;}
+.login-box button{width:100%;padding:11px;background:var(--pri);color:#fff;border:none;border-radius:8px;font-size:15px;font-weight:600;cursor:pointer;}
+.login-msg{margin-top:12px;text-align:center;font-size:13px;min-height:18px;}
+.login-msg.error{color:#dc3545;}
+
+/* Pagination */
+.pager{background:var(--card);margin:0 20px 16px;padding:10px 20px;border-radius:8px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;box-shadow:0 1px 3px rgba(0,0,0,.06);font-size:12px;color:var(--lt);}
+.pg-center{display:flex;gap:6px;}
+.pg-btn{padding:4px 10px;border:1px solid var(--bdr);border-radius:4px;background:#fff;cursor:pointer;font-size:12px;}
+.pg-btn:hover{background:#f0f2f5;}
+.pg-btn:disabled{opacity:.4;cursor:default;}
+@media(max-width:768px){.fg{grid-template-columns:1fr;}.sb{width:0;}.main{margin-left:0;}}
+</style>
+</head>
+<body>
+
+<!-- Login Overlay -->
+<div id="loginView">
+  <div class="login-box">
+    <h2>🚢 订单管理系统</h2>
+    <div class="fg">
+      <label>用户名</label>
+      <input type="text" id="loginUsername" placeholder="请输入用户名" autocomplete="username">
+      <label>密码</label>
+      <input type="password" id="loginPassword" placeholder="请输入密码" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()">
+    </div>
+    <button onclick="doLogin()">登 录</button>
+    <div id="loginMsg" class="login-msg"></div>
+  </div>
+</div>
+
+<div class="app" id="appView" style="display:none;">
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="sb-title">🚢 货代管理</div>
+    <div class="sb-menu">
+      <div class="sb-group">
+        <div class="sb-group-title" onclick="toggleGroup('sea')">🌊 海运业务</div>
+        <div class="sb-group-items open" id="grp-sea">
+          <a class="sb-item" href="/" onclick="return confirmNav(event,'/')">📦 舱位管理</a>
+          <a class="sb-item active" href="/orders" onclick="return confirmNav(event,'/orders')">📋 订单管理</a>
+        </div>
+      </div>
+      <div class="sb-group">
+        <div class="sb-group-title" onclick="toggleGroup('sys')">⚙️ 系统</div>
+        <div class="sb-group-items" id="grp-sys">
+          <a class="sb-item" href="#" onclick="doLogout();return false;">🚪 退出登录</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main -->
+  <div class="main">
+    <div class="hd">
+      <h1>📋 订单管理</h1>
+      <div class="hd-btns" id="hdBtns">
+        <button class="btn-p" style="background:#fff;color:var(--pri);border:1px solid #fff;padding:7px 14px;border-radius:6px;cursor:pointer;font-size:13px;font-weight:500;" onclick="openCreateModal()" id="btnNew">＋ 新建订单</button>
+        <button style="background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.3);padding:7px 14px;border-radius:6px;cursor:pointer;font-size:13px;" onclick="loadOrders()">🔄 刷新</button>
+      </div>
+    </div>
+
+    <!-- Toolbar -->
+    <div class="tbar">
+      <div class="scope-btns" id="scopeBtns">
+        <button class="scope-btn active" data-scope="own" onclick="setScope('own',this)">📋 我的订单</button>
+        <button class="scope-btn" data-scope="all" onclick="setScope('all',this)">🌐 全部订单</button>
+      </div>
+      <input type="text" placeholder="🔍 搜索订单号/客户..." id="searchInput" oninput="loadOrders()" style="padding:7px 12px;border:1px solid var(--bdr);border-radius:6px;font-size:13px;width:200px;">
+      <select id="statusFilter" onchange="loadOrders()" style="padding:7px 10px;border:1px solid var(--bdr);border-radius:6px;font-size:13px;">
+        <option value="">全部状态</option>
+        <option>空闲</option><option>已预订</option><option>已确认</option><option>已放货</option><option>已完结</option>
+      </select>
+    </div>
+
+    <!-- Table -->
+    <div class="tw">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th><th>订单号</th><th>客户/收货人</th><th>船公司</th><th>航线</th><th>柜型</th><th>ETD</th><th>ETA</th><th>状态</th><th>创建人</th><th>操作</th>
+          </tr>
+        </thead>
+        <tbody id="orderTable"></tbody>
+      </table>
+    </div>
+
+    <!-- Pagination -->
+    <div class="pager">
+      <div class="pager-left" id="pagerInfo">共 0 条</div>
+      <div class="pg-center" id="pagerCenter"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Create/Edit Modal -->
+<div class="ov" id="orderModal">
+  <div class="md">
+    <h2 id="modalTitle">新建订单</h2>
+    <div class="fg">
+      <div><label>订单号 *</label><input type="text" id="f_job_no" placeholder="如 JOB-2026-001"></div>
+      <div><label>类型</label><select id="f_doc_type"><option>出口</option><option>进口</option></select></div>
+      <div class="full"><label>收货人</label><input type="text" id="f_consignee" placeholder="收货人名称"></div>
+      <div class="full"><label>发货人</label><input type="text" id="f_shipper" placeholder="发货人名称"></div>
+      <div><label>起运港</label><input type="text" id="f_port_loading" placeholder="如 NINGBO"></div>
+      <div><label>目的港</label><input type="text" id="f_port_discharge" placeholder="如 NZAKL"></div>
+      <div><label>船公司</label><input type="text" id="f_carrier" placeholder="如 CMA CGM"></div>
+      <div><label>船名航次</label><input type="text" id="f_vessel_voyage" placeholder="如 ANL GUAYAQUIL/624S"></div>
+      <div><label>ETD</label><input type="date" id="f_etd"></div>
+      <div><label>ETA</label><input type="date" id="f_eta"></div>
+      <div><label>柜型</label><input type="text" id="f_container_info" placeholder="如 40HQ x 1"></div>
+      <div><label>件数</label><input type="number" id="f_pieces" placeholder="0"></div>
+      <div><label>毛重(KG)</label><input type="number" id="f_weight" placeholder="0"></div>
+      <div><label>体积(CBM)</label><input type="number" step="0.1" id="f_volume" placeholder="0"></div>
+      <div class="full"><label>货物描述(英文)</label><input type="text" id="f_goods_en" placeholder="Goods description in English"></div>
+      <div class="full"><label>货物描述(中文)</label><input type="text" id="f_goods_cn" placeholder="货物中文描述"></div>
+      <div class="full"><label>备注</label><textarea id="f_remark" rows="2" placeholder="备注信息"></textarea></div>
+    </div>
+    <div class="mft">
+      <button onclick="closeModal()" style="padding:8px 18px;background:#fff;border:1px solid var(--bdr);border-radius:6px;cursor:pointer;">取消</button>
+      <button onclick="saveOrder()" style="padding:8px 18px;background:var(--pri);color:#fff;border:none;border-radius:6px;cursor:pointer;font-weight:500;">💾 保存</button>
+    </div>
+  </div>
+</div>
+
+<script>
+let currentUser = null;
+let currentScope = 'own';
+let currentPage = 1;
+let editingId = null;
+
+// ============ Auth ============
+async function checkAuth() {
+  const r = await fetch('/api/auth/me', {credentials:'include'});
+  if (r.ok) {
+    currentUser = await r.json();
+    document.getElementById('loginView').style.display = 'none';
+    document.getElementById('appView').style.display = 'flex';
+    // Hide "all" scope button for viewers
+    if (currentUser.role === 'viewer') {
+      document.querySelector('[data-scope="all"]').style.display = 'none';
+    }
+    // Hide "new order" button for viewers
+    if (currentUser.role === 'viewer') {
+      document.getElementById('btnNew').style.display = 'none';
+    }
+    loadOrders();
+  } else {
+    document.getElementById('loginView').style.display = 'flex';
+    document.getElementById('appView').style.display = 'none';
+  }
+}
+
+async function doLogin() {
+  const u = document.getElementById('loginUsername').value.trim();
+  const p = document.getElementById('loginPassword').value;
+  const r = await fetch('/api/auth/login', {
+    method:'POST', headers:{'Content-Type':'application/json'},
+    credentials:'include',
+    body: JSON.stringify({username:u, password:p})
+  });
+  const msg = document.getElementById('loginMsg');
+  if (r.ok) {
+    msg.className = 'login-msg success'; msg.textContent = '登录成功，正在跳转...';
+    setTimeout(() => checkAuth(), 500);
+  } else {
+    const d = await r.json();
+    msg.className = 'login-msg error'; msg.textContent = d.error || '登录失败';
+  }
+}
+
+function doLogout() {
+  fetch('/api/auth/logout', {method:'POST', credentials:'include'}).then(() => location.reload());
+}
+
+// ============ Orders ============
+async function loadOrders(page) {
+  if (!currentUser) return;
+  page = page || 1;
+  currentPage = page;
+  const params = new URLSearchParams({
+    scope: currentScope,
+    page: page,
+    per_page: 15
+  });
+  const search = document.getElementById('searchInput').value.trim();
+  if (search) params.set('job_no', search);
+  const status = document.getElementById('statusFilter').value;
+  if (status) params.set('status', status);
+
+  const r = await fetch(`/api/orders?${params}`, {credentials:'include'});
+  if (!r.ok) { alert('加载失败'); return; }
+  const result = await r.json();
+  renderTable(result.data || []);
+  renderPager(result.total || 0, page, result.per_page || 15);
+}
+
+function renderTable(orders) {
+  const tbody = document.getElementById('orderTable');
+  tbody.innerHTML = '';
+  if (!orders.length) {
+    tbody.innerHTML = '<tr><td colspan="11" style="padding:30px;color:#999;">暂无订单数据</td></tr>';
+    return;
+  }
+  orders.forEach(o => {
+    const isOwner = String(o.owner) === String(currentUser.id);
+    const canEdit = currentUser.role === 'admin' || (currentUser.role === 'operator' && isOwner);
+    const canDelete = currentUser.role === 'admin' || isOwner;
+    const statusClass = o.status === '空闲' ? 'bg-free' : o.status === '已预订' ? 'bg-booked' : o.status === '已确认' ? 'bg-confirm' : 'bg-done';
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>${o.id}</td>
+      <td><strong>${esc(o.job_no)}</strong></td>
+      <td style="text-align:left;max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${esc(o.consignee||'')}">${esc(o.consignee||'')}</td>
+      <td>${esc(o.carrier||'')}</td>
+      <td>${esc(o.port_loading||'')} → ${esc(o.port_discharge||'')}</td>
+      <td>${esc(o.container_info||'')}</td>
+      <td>${esc((o.etd||'').slice(0,10))}</td>
+      <td>${esc((o.eta||'').slice(0,10))}</td>
+      <td><span class="badge ${statusClass}">${esc(o.status||'')}</span></td>
+      <td>${esc(o._owner_name || 'User#'+o.owner)}</td>
+      <td>
+        ${canEdit ? `<button onclick="openEditModal(${o.id})" style="padding:3px 8px;border:1px solid var(--bdr);border-radius:4px;background:#fff;cursor:pointer;font-size:12px;margin-right:4px;">✏️</button>` : ''}
+        ${canDelete ? `<button onclick="deleteOrder(${o.id})" style="padding:3px 8px;border:1px solid #dc3545;color:#dc3545;border-radius:4px;background:#fff;cursor:pointer;font-size:12px;">🗑️</button>` : ''}
+        ${!canEdit && !canDelete ? '<span style="color:#ccc;font-size:12px;">只读</span>' : ''}
+      </td>`;
+    tbody.appendChild(tr);
+  });
+}
+
+function renderPager(total, page, perPage) {
+  document.getElementById('pagerInfo').textContent = `共 ${total} 条，第 ${page} 页`;
+  const totalPages = Math.ceil(total / perPage) || 1;
+  let html = '';
+  if (page > 1) html += `<button class="pg-btn" onclick="loadOrders(${page-1})">← 上一页</button>`;
+  html += `<span style="padding:0 8px;font-size:12px;color:var(--txt);">${page} / ${totalPages}</span>`;
+  if (page < totalPages) html += `<button class="pg-btn" onclick="loadOrders(${page+1})">下一页 →</button>`;
+  document.getElementById('pagerCenter').innerHTML = html;
+}
+
+function setScope(scope, btn) {
+  currentScope = scope;
+  document.querySelectorAll('.scope-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  currentPage = 1;
+  loadOrders(1);
+}
+
+// ============ Modal ============
+function openCreateModal() {
+  editingId = null;
+  document.getElementById('modalTitle').textContent = '新建订单';
+  document.querySelectorAll('#orderModal input, #orderModal select, #orderModal textarea').forEach(el => el.value = '');
+  document.getElementById('orderModal').classList.add('on');
+}
+
+async function openEditModal(id) {
+  const r = await fetch(`/api/orders/${id}`, {credentials:'include'});
+  if (!r.ok) { alert('加载失败'); return; }
+  const o = await r.json();
+  editingId = id;
+  document.getElementById('modalTitle').textContent = '编辑订单';
+  setValue('f_job_no', o.job_no);
+  setValue('f_doc_type', o.doc_type);
+  setValue('f_consignee', o.consignee);
+  setValue('f_shipper', o.shipper);
+  setValue('f_port_loading', o.port_loading);
+  setValue('f_port_discharge', o.port_discharge);
+  setValue('f_carrier', o.carrier);
+  setValue('f_vessel_voyage', (o.vessel||'') + (o.voyage ? '/'+o.voyage : ''));
+  setValue('f_etd', (o.etd||'').slice(0,10));
+  setValue('f_eta', (o.eta||'').slice(0,10));
+  setValue('f_container_info', o.container_info);
+  setValue('f_pieces', o.pieces);
+  setValue('f_weight', o.weight);
+  setValue('f_volume', o.volume);
+  setValue('f_goods_en', o.goods_en);
+  setValue('f_goods_cn', o.goods_cn);
+  setValue('f_remark', o.operate_remark || '');
+  document.getElementById('orderModal').classList.add('on');
+}
+
+function closeModal() {
+  document.getElementById('orderModal').classList.remove('on');
+}
+
+async function saveOrder() {
+  const jobNo = document.getElementById('f_job_no').value.trim();
+  if (!jobNo) { alert('请输入订单号'); return; }
+  const vessel_voyage = document.getElementById('f_vessel_voyage').value.trim();
+  const [vessel, voy] = vessel_voyage.includes('/') ? vessel_voyage.split('/') : [vessel_voyage, ''];
+  const data = {
+    job_no: jobNo,
+    doc_type: document.getElementById('f_doc_type').value,
+    consignee: document.getElementById('f_consignee').value.trim(),
+    shipper: document.getElementById('f_shipper').value.trim(),
+    port_loading: document.getElementById('f_port_loading').value.trim(),
+    port_discharge: document.getElementById('f_port_discharge').value.trim(),
+    carrier: document.getElementById('f_carrier').value.trim(),
+    vessel: vessel.trim(),
+    voyag: voy.trim(),
+    etd: document.getElementById('f_etd').value || null,
+    eta: document.getElementById('f_eta').value || null,
+    container_info: document.getElementById('f_container_info').value.trim(),
+    pieces: parseInt(document.getElementById('f_pieces').value) || 0,
+    weight: parseInt(document.getElementById('f_weight').value) || 0,
+    volume: parseFloat(document.getElementById('f_volume').value) || 0,
+    goods_en: document.getElementById('f_goods_en').value.trim(),
+    goods_cn: document.getElementById('f_goods_cn').value.trim(),
+    operate_remark: document.getElementById('f_remark').value.trim(),
+    status: '空闲'
+  };
+  let r;
+  if (editingId) {
+    r = await fetch(`/api/orders/${editingId}`, {
+      method:'PUT', headers:{'Content-Type':'application/json'},
+      credentials:'include', body: JSON.stringify(data)
+    });
+  } else {
+    r = await fetch('/api/orders', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      credentials:'include', body: JSON.stringify(data)
+    });
+  }
+  if (r.ok) {
+    closeModal();
+    loadOrders(currentPage);
+  } else {
+    const d = await r.json();
+    alert('保存失败: ' + (d.error || '未知错误'));
+  }
+}
+
+async function deleteOrder(id) {
+  if (!confirm('确定删除此订单？')) return;
+  const r = await fetch(`/api/orders/${id}`, {method:'DELETE', credentials:'include'});
+  if (r.ok) {
+    loadOrders(currentPage);
+  } else {
+    const d = await r.json();
+    alert('删除失败: ' + (d.error || '未知错误'));
+  }
+}
+
+// ============ Helpers ============
+function setValue(id, val) { document.getElementById(id).value = (val||''); }
+function esc(s) { if (!s) return ''; const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+function toggleGroup(name) { document.getElementById('grp-'+name).classList.toggle('open'); }
+function confirmNav(e, url) { if (!confirm('离开此页面？未保存的数据会丢失。')) { e.preventDefault(); return false; } return true; }
+
+// Init
+checkAuth();
+</script>
+</body>
+</html>

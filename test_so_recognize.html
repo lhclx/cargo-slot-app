@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SO识别功能测试</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 800px; margin: 50px auto; padding: 20px; }
+    .status { margin: 20px 0; padding: 15px; border-radius: 8px; }
+    .success { background: #d4edda; color: #155724; }
+    .error { background: #f8d7da; color: #721c24; }
+    .info { background: #d1ecf1; color: #0c5460; }
+    button { padding: 10px 20px; margin: 10px 5px; cursor: pointer; }
+    pre { background: #f8f9fa; padding: 10px; overflow: auto; }
+  </style>
+</head>
+<body>
+  <h1>🔧 SO识别功能测试页面</h1>
+  <p>此页面用于隔离测试 SO 识别功能，帮助找出问题根源。</p>
+  
+  <div>
+    <label>选择文件（图片或PDF）：</label>
+    <input type="file" id="testFileInput" accept=".png,.jpg,.jpeg,.gif,.bmp,.webp,.pdf">
+  </div>
+  
+  <div style="margin-top:20px">
+    <button onclick="testFileUpload()">📤 测试上传</button>
+    <button onclick="checkAPI()">🔍 检查API</button>
+    <button onclick="clearLog()">🗑️ 清除日志</button>
+  </div>
+  
+  <div id="status"></div>
+  
+  <h3>📋 调试日志</h3>
+  <pre id="log"></pre>
+
+  <script>
+    const API = 'http://localhost:5000/api';
+    const logEl = document.getElementById('log');
+    
+    function log(msg) {
+      const time = new Date().toLocaleTimeString();
+      logEl.textContent += `[${time}] ${msg}\n`;
+      console.log(`[测试] ${msg}`);
+    }
+    
+    function setStatus(msg, type='info') {
+      const el = document.getElementById('status');
+      el.className = `status ${type}`;
+      el.innerHTML = msg;
+    }
+    
+    function clearLog() {
+      logEl.textContent = '';
+      document.getElementById('status').innerHTML = '';
+    }
+    
+    // 检查 API 端点是否存在
+    async function checkAPI() {
+      log('开始检查 API...');
+      try {
+        const resp = await fetch('/api/recognize-so', { method: 'POST' });
+        log(`API 响应状态：${resp.status} ${resp.statusText}`);
+        const result = await resp.json();
+        log(`API 响应数据：${JSON.stringify(result)}`);
+        setStatus(`✅ API 端点正常（预期 400 错误：未上传文件）`, 'success');
+      } catch(e) {
+        log(`❌ API 检查失败：${e.message}`);
+        setStatus(`❌ API 端点不可用：${e.message}`, 'error');
+      }
+    }
+    
+    // 测试文件上传
+    async function testFileUpload() {
+      const fileInput = document.getElementById('testFileInput');
+      if (!fileInput.files.length) {
+        setStatus('❌ 请先选择文件', 'error');
+        return;
+      }
+      
+      const file = fileInput.files[0];
+      log(`选中文件：${file.name}（${(file.size/1024).toFixed(1)} KB）`);
+      log('开始上传...');
+      setStatus('⏳ 正在上传并识别...', 'info');
+      
+      const fd = new FormData();
+      fd.append('file', file);
+      
+      try {
+        const resp = await fetch('/api/recognize-so', { method: 'POST', body: fd });
+        log(`响应状态：${resp.status} ${resp.statusText}`);
+        
+        const result = await resp.json();
+        log(`响应数据：${JSON.stringify(result, null, 2)}`);
+        
+        if (resp.ok) {
+          setStatus(`✅ 识别成功！<br><pre>${JSON.stringify(result, null, 2)}</pre>`, 'success');
+        } else {
+          setStatus(`❌ 识别失败：${result.error || '未知错误'}`, 'error');
+        }
+      } catch(e) {
+        log(`❌ 请求失败：${e.message}`);
+        setStatus(`❌ 请求失败：${e.message}`, 'error');
+      }
+    }
+    
+    // 页面加载完成后执行
+    window.addEventListener('DOMContentLoaded', function() {
+      log('测试页面加载完成');
+      checkAPI();
+    });
+  </script>
+</body>
+</html>
