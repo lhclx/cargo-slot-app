@@ -351,7 +351,7 @@ tr:hover td{background:#f8f9fa;}
         <button class="btn btn-p" onclick="loadMyOrders()">🔄 刷新</button>
       </div>
     </div>
-    <div class="tw"><table><thead><tr><th>ID</th><th>船司</th><th>SO号</th><th>约号</th><th>起运港</th><th>目的港</th><th>柜型</th><th>箱号</th><th>封号</th><th>分配客户</th><th>销售价格</th><th>备注</th><th>截VGM</th><th>截SI</th><th>拖车</th><th>报关</th><th>应付</th><th>应收</th><th>放单</th><th>创建人</th><th>操作</th></tr></thead><tbody id="moTb"></tbody></table></div>
+    <div class="tw"><table><thead><tr><th>ID</th><th>船司</th><th>SO号</th><th>约号</th><th>起运港</th><th>目的港</th><th>柜型</th><th>数量</th><th>箱号</th><th>封号</th><th>分配客户</th><th>销售价格</th><th>备注</th><th>截VGM</th><th>截SI</th><th>拖车</th><th>报关</th><th>应付</th><th>应收</th><th>放单</th><th>创建人</th><th>操作</th></tr></thead><tbody id="moTb"></tbody></table></div>
     <div id="moPager" style="margin-top:12px;display:flex;align-items:center;justify-content:space-between;padding:8px 16px;background:var(--card);border-radius:8px;font-size:12px;color:var(--lt);"></div>
   </div>
 </div>
@@ -524,6 +524,7 @@ tr:hover td{background:#f8f9fa;}
     <div class="fg"><label>起运港</label><input type="text" id="oPol" placeholder="NINGBO"></div>
     <div class="fg"><label>目的港</label><input type="text" id="oPod" placeholder="NZAKL"></div>
     <div class="fg"><label>柜型</label><input type="text" id="oContainerType" placeholder="40HQ"></div>
+    <div class="fg"><label>数量</label><input type="number" id="oQuantity" placeholder="1" min="1"></div>
     <div class="fg"><label>箱号</label><input type="text" id="oContainerNo" placeholder="如 MSCU1234567"></div>
     <div class="fg"><label>封号</label><input type="text" id="oSealNo" placeholder="如 123456"></div>
     <div class="fg"><label>分配客户</label><input type="text" id="oClient" placeholder="客户名称"></div>
@@ -1277,7 +1278,7 @@ async function loadMyOrders(page) {
 function renderMyOrders(orders) {
   const tb = document.getElementById('moTb');
   if (!tb) return;
-  if (!orders.length) { tb.innerHTML='<tr><td colspan="21" style="text-align:center;color:#999;padding:40px;">📦 暂无订单，点击「新建订单」添加</td></tr>'; return; }
+  if (!orders.length) { tb.innerHTML='<tr><td colspan="22" style="text-align:center;color:#999;padding:40px;">📦 暂无订单，点击「新建订单」添加</td></tr>'; return; }
   tb.innerHTML = orders.map(o => {
     return `<tr>
       <td>${o.id}</td>
@@ -1287,6 +1288,7 @@ function renderMyOrders(orders) {
       <td>${esc(o.port_loading||'')}</td>
       <td>${esc(o.port_discharge||'')}</td>
       <td>${esc(o.container_type||'')}</td>
+      <td>${o.quantity||''}</td>
       <td>${esc(o.container_no||'')}</td>
       <td>${esc(o.seal_no||'')}</td>
       <td>${esc(o.client||'')}</td>
@@ -1353,7 +1355,7 @@ function esc(s) { if(!s) return ''; const d=document.createElement('div'); d.tex
 function openOrderModal() {
   moEditingId = null;
   document.getElementById('omt').textContent = '新建订单';
-  ['oId','oCarrier','oSoNo','oBookinNo','oPol','oPod','oContainerType','oContainerNo','oSealNo','oClient','oSalePrice','oRemark','oCutVgm','oCutSi','oTruck','oCustoms','oPayable','oReceivable','oReleased'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  ['oId','oCarrier','oSoNo','oBookinNo','oPol','oPod','oContainerType','oQuantity','oContainerNo','oSealNo','oClient','oSalePrice','oRemark','oCutVgm','oCutSi','oTruck','oCustoms','oPayable','oReceivable','oReleased'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
   document.getElementById('oReleased').value='否';
   document.getElementById('orderModal').classList.add('on');
 }
@@ -1372,6 +1374,7 @@ async function editOrderItem(id) {
     document.getElementById('oPol').value = o.port_loading||'';
     document.getElementById('oPod').value = o.port_discharge||'';
     document.getElementById('oContainerType').value = o.container_type||'';
+    document.getElementById('oQuantity').value = o.quantity||'';
     document.getElementById('oContainerNo').value = o.container_no||'';
     document.getElementById('oSealNo').value = o.seal_no||'';
     document.getElementById('oClient').value = o.client||'';
@@ -1403,6 +1406,7 @@ async function saveOrderItem() {
     port_loading: document.getElementById('oPol').value.trim(),
     port_discharge: document.getElementById('oPod').value.trim(),
     container_type: document.getElementById('oContainerType').value.trim(),
+    quantity: parseInt(document.getElementById('oQuantity').value)||'',
     container_no: document.getElementById('oContainerNo').value.trim(),
     seal_no: document.getElementById('oSealNo').value.trim(),
     client: document.getElementById('oClient').value.trim(),

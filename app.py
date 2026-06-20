@@ -1098,6 +1098,7 @@ ORDER_FIELDS = [
     'port_loading',   # 起运港
     'port_discharge', # 目的港
     'container_type',  # 柜型
+    'quantity',       # 数量
     'container_no',   # 箱号
     'seal_no',        # 封号
     'client',         # 分配客户
@@ -1312,7 +1313,7 @@ def export_orders():
     ws.title = '订单列表'
 
     # 表头(蓝色背景)
-    headers = ['ID', '船司', 'SO号', '约号', '起运港', '目的港', '柜型', '箱号', '封号',
+    headers = ['ID', '船司', 'SO号', '约号', '起运港', '目的港', '柜型', '数量', '箱号', '封号',
                '分配客户', '销售价格', '备注', '截VGM', '截SI', '拖车', '报关', '应付', '应收', '放单']
 
     from openpyxl.styles import Font, Alignment, PatternFill, Border, Side
@@ -1332,7 +1333,7 @@ def export_orders():
         cell.border = thin_border
 
     # 列宽
-    widths = [8, 12, 15, 15, 12, 12, 10, 18, 18, 15, 12, 20, 12, 12, 15, 15, 12, 12, 10]
+    widths = [8, 12, 15, 15, 12, 12, 10, 8, 18, 18, 15, 12, 20, 12, 12, 15, 15, 12, 12, 10]
     from openpyxl.utils import get_column_letter
     for ci, w in enumerate(widths, 1):
         ws.column_dimensions[get_column_letter(ci)].width = w
@@ -1348,6 +1349,7 @@ def export_orders():
             item.get('port_loading', ''),
             item.get('port_discharge', ''),
             item.get('container_type', ''),
+            item.get('quantity', ''),
             item.get('container_no', ''),
             item.get('seal_no', ''),
             item.get('client', ''),
@@ -1427,18 +1429,19 @@ def import_orders():
                     'port_loading': str(row[4] or '').strip() if len(row) > 4 else '',
                     'port_discharge': str(row[5] or '').strip() if len(row) > 5 else '',
                     'container_type': str(row[6] or '').strip() if len(row) > 6 else '',
-                    'container_no': str(row[7] or '').strip() if len(row) > 7 else '',
-                    'seal_no': str(row[8] or '').strip() if len(row) > 8 else '',
-                    'client': str(row[9] or '').strip() if len(row) > 9 else '',
-                    'sale_price': float(row[10]) if len(row) > 10 and row[10] else '',
-                    'remark': str(row[11] or '').strip() if len(row) > 11 else '',
-                    'cut_vgm': normalize_date(row[12]) if len(row) > 12 else '',
-                    'cut_si': normalize_date(row[13]) if len(row) > 13 else '',
-                    'truck': str(row[14] or '').strip() if len(row) > 14 else '',
-                    'customs': str(row[15] or '').strip() if len(row) > 15 else '',
-                    'payable': float(row[16]) if len(row) > 16 and row[16] else '',
-                    'receivable': float(row[17]) if len(row) > 17 and row[17] else '',
-                    'released': str(row[18] or '').strip() if len(row) > 18 else '否',
+                    'quantity': int(row[7]) if len(row) > 7 and row[7] else '',
+                    'container_no': str(row[8] or '').strip() if len(row) > 8 else '',
+                    'seal_no': str(row[9] or '').strip() if len(row) > 9 else '',
+                    'client': str(row[10] or '').strip() if len(row) > 10 else '',
+                    'sale_price': float(row[11]) if len(row) > 11 and row[11] else '',
+                    'remark': str(row[12] or '').strip() if len(row) > 12 else '',
+                    'cut_vgm': normalize_date(row[13]) if len(row) > 13 else '',
+                    'cut_si': normalize_date(row[14]) if len(row) > 14 else '',
+                    'truck': str(row[15] or '').strip() if len(row) > 15 else '',
+                    'customs': str(row[16] or '').strip() if len(row) > 16 else '',
+                    'payable': float(row[17]) if len(row) > 17 and row[17] else '',
+                    'receivable': float(row[18]) if len(row) > 18 and row[18] else '',
+                    'released': str(row[19] or '').strip() if len(row) > 19 else '否',
                     'updated_at': now
                 }
 
@@ -1480,7 +1483,7 @@ def download_order_template():
     ws.title = '订单导入模板'
 
     # 表头
-    headers = ['ID', '船司', 'SO号', '约号', '起运港', '目的港', '柜型', '箱号', '封号',
+    headers = ['ID', '船司', 'SO号', '约号', '起运港', '目的港', '柜型', '数量', '箱号', '封号',
                '分配客户', '销售价格', '备注', '截VGM', '截SI', '拖车', '报关', '应付', '应收', '放单']
     ws.append(headers)
 
@@ -1494,7 +1497,7 @@ def download_order_template():
         cell.alignment = Alignment(horizontal='center')
 
     # 示例数据
-    ws.append(['', 'MSC', 'MSU2894710', 'BK2026001', 'NINGBO', 'SYDNEY', '40HQ', 'MSCU1234567', '123456',
+    ws.append(['', 'MSC', 'MSU2894710', 'BK2026001', 'NINGBO', 'SYDNEY', '40HQ', 1, 'MSCU1234567', '123456',
                'Client A', 2800.00, '紧急订单', '2026-07-01', '2026-06-28', '张三卡车', '李四报关', 2000.00, 2800.00, '否'])
 
     # 列宽
@@ -1505,17 +1508,18 @@ def download_order_template():
     ws.column_dimensions['E'].width = 12
     ws.column_dimensions['F'].width = 12
     ws.column_dimensions['G'].width = 10
-    ws.column_dimensions['H'].width = 18
-    ws.column_dimensions['I'].width = 15
-    ws.column_dimensions['J'].width = 12
-    ws.column_dimensions['K'].width = 20
-    ws.column_dimensions['L'].width = 12
+    ws.column_dimensions['H'].width = 8
+    ws.column_dimensions['I'].width = 18
+    ws.column_dimensions['J'].width = 15
+    ws.column_dimensions['K'].width = 12
+    ws.column_dimensions['L'].width = 20
     ws.column_dimensions['M'].width = 12
-    ws.column_dimensions['N'].width = 15
+    ws.column_dimensions['N'].width = 12
     ws.column_dimensions['O'].width = 15
-    ws.column_dimensions['P'].width = 12
+    ws.column_dimensions['P'].width = 15
     ws.column_dimensions['Q'].width = 12
-    ws.column_dimensions['R'].width = 10
+    ws.column_dimensions['R'].width = 12
+    ws.column_dimensions['S'].width = 10
 
     # 保存到内存
     output = BytesIO()

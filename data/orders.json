@@ -21,7 +21,8 @@
     "customs": "",
     "payable": "",
     "receivable": "",
-    "released": ""
+    "released": "",
+    "quantity": ""
   },
   {
     "id": 2,
@@ -45,7 +46,8 @@
     "customs": "",
     "payable": "",
     "receivable": "",
-    "released": ""
+    "released": "",
+    "quantity": ""
   },
   {
     "id": 3,
@@ -69,7 +71,8 @@
     "customs": "",
     "payable": "",
     "receivable": "",
-    "released": ""
+    "released": "",
+    "quantity": ""
   },
   {
     "client": "Client Test",
@@ -93,7 +96,8 @@
     "customs": "",
     "payable": "",
     "receivable": "",
-    "released": ""
+    "released": "",
+    "quantity": ""
   },
   {
     "so_no": "未放舱",
@@ -117,7 +121,8 @@
     "updated_at": "2026-06-20 13:17",
     "owner": 2,
     "container_no": "",
-    "seal_no": ""
+    "seal_no": "",
+    "quantity": ""
   },
   {
     "so_no": "JOB-2026-001",
@@ -125,6 +130,23 @@
     "id": 8,
     "created_at": "2026-06-21 00:05",
     "updated_at": "2026-06-21 00:05",
-    "owner": 2
+    "owner": 2,
+    "booking_no": "",
+    "port_loading": "",
+    "port_discharge": "",
+    "container_type": "",
+    "quantity": "",
+    "container_no": "",
+    "seal_no": "",
+    "client": "",
+    "sale_price": "",
+    "remark": "",
+    "cut_vgm": "",
+    "cut_si": "",
+    "truck": "",
+    "customs": "",
+    "payable": "",
+    "receivable": "",
+    "released": ""
   }
 ]
